@@ -11,8 +11,13 @@ import Foundation
 class NetReader
 {
     init()
+    { }
+    func test()
     {
-        
+        let url = NSURL(string: "http://envibus.tsi.cityway.fr/")
+        let html = try? NSString(contentsOfURL: url!, usedEncoding: nil)
+        print(html)
+
     }
     
 }
