@@ -51,9 +51,9 @@ class IOAPI
     }
     
     /*
-    * IOAPI.getListOfLine(nameOfArret: String) -> [Line]
+    * IOAPI.getListOfLine() -> [String]
     *
-    * retourne la liste de toute les lignes référencées dans le json à un arret
+    * retourne la liste de toute les lignes référencées dans le json
     *
     */
     static func getListOfLine() -> [String]
