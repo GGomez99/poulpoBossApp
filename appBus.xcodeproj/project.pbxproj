@@ -18,6 +18,11 @@
 		A9F623DE1C19E3790018BA32 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9F623DC1C19E3790018BA32 /* Main.storyboard */; };
 		A9F623E01C19E3790018BA32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9F623DF1C19E3790018BA32 /* Assets.xcassets */; };
 		A9F623E31C19E3790018BA32 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9F623E11C19E3790018BA32 /* LaunchScreen.storyboard */; };
+		E0EAED111C31DD4000D80BFE /* IOAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EAED101C31DD4000D80BFE /* IOAPI.swift */; };
+		E0EAED131C31DF3900D80BFE /* structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EAED121C31DF3900D80BFE /* structs.swift */; };
+		E0EAED151C31E3CA00D80BFE /* NetReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EAED141C31E3CA00D80BFE /* NetReader.swift */; };
+		E0EAED171C31E3DB00D80BFE /* JSONReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EAED161C31E3DB00D80BFE /* JSONReader.swift */; };
+		E0EAED191C31E68B00D80BFE /* antibes.json in Resources */ = {isa = PBXBuildFile; fileRef = E0EAED181C31E68B00D80BFE /* antibes.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +41,11 @@
 		A9F623E21C19E3790018BA32 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A9F623E41C19E3790018BA32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A9F624331C1A03790018BA32 /* BackTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackTableVC.swift; sourceTree = "<group>"; };
+		E0EAED101C31DD4000D80BFE /* IOAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IOAPI.swift; sourceTree = "<group>"; };
+		E0EAED121C31DF3900D80BFE /* structs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = structs.swift; sourceTree = "<group>"; };
+		E0EAED141C31E3CA00D80BFE /* NetReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetReader.swift; sourceTree = "<group>"; };
+		E0EAED161C31E3DB00D80BFE /* JSONReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONReader.swift; sourceTree = "<group>"; };
+		E0EAED181C31E68B00D80BFE /* antibes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = antibes.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +78,7 @@
 		A9F623D71C19E3790018BA32 /* appBus */ = {
 			isa = PBXGroup;
 			children = (
+				E0EAED0E1C31DCD500D80BFE /* IOAPI */,
 				A9F623D81C19E3790018BA32 /* AppDelegate.swift */,
 				A9F623DA1C19E3790018BA32 /* accueilVC.swift */,
 				A9779D741C1C627400A40E13 /* arretsVC.swift */,
@@ -92,6 +103,18 @@
 				A9BFFB861C31C2A5005AD814 /* appBus-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E0EAED0E1C31DCD500D80BFE /* IOAPI */ = {
+			isa = PBXGroup;
+			children = (
+				E0EAED101C31DD4000D80BFE /* IOAPI.swift */,
+				E0EAED121C31DF3900D80BFE /* structs.swift */,
+				E0EAED141C31E3CA00D80BFE /* NetReader.swift */,
+				E0EAED161C31E3DB00D80BFE /* JSONReader.swift */,
+				E0EAED181C31E68B00D80BFE /* antibes.json */,
+			);
+			name = IOAPI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,6 +179,7 @@
 				A9779D851C1C7F5A00A40E13 /* CenturyGothic.ttf in Resources */,
 				A9F623E31C19E3790018BA32 /* LaunchScreen.storyboard in Resources */,
 				A9F623E01C19E3790018BA32 /* Assets.xcassets in Resources */,
+				E0EAED191C31E68B00D80BFE /* antibes.json in Resources */,
 				A9F623DE1C19E3790018BA32 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -167,11 +191,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0EAED131C31DF3900D80BFE /* structs.swift in Sources */,
 				A9BFFB781C31BD9A005AD814 /* AppDelegate.swift in Sources */,
 				A965AD351C370A7F004DF24F /* PDFTableVC.swift in Sources */,
 				A9BFFB791C31BD9A005AD814 /* accueilVC.swift in Sources */,
+				E0EAED151C31E3CA00D80BFE /* NetReader.swift in Sources */,
 				A9BFFB7A1C31BD9A005AD814 /* arretsVC.swift in Sources */,
 				A9BFFB7B1C31BD9A005AD814 /* arretsTableVC.swift in Sources */,
+				E0EAED171C31E3DB00D80BFE /* JSONReader.swift in Sources */,
+				E0EAED111C31DD4000D80BFE /* IOAPI.swift in Sources */,
 				A9BFFB7C1C31BD9A005AD814 /* BackTableVC.swift in Sources */,
 				A9BFFB891C31C2A6005AD814 /* SWRevealViewController.m in Sources */,
 			);
