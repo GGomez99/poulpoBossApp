@@ -56,7 +56,7 @@ class IOAPI
     * retourne la liste de toute les lignes référencées dans le json à un arret
     *
     */
-    static func getListOfLine() -> [Line]
+    static func getListOfLine() -> [String]
     {
         return []
     }
