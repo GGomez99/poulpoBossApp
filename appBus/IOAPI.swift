@@ -53,11 +53,11 @@ class IOAPI
     /*
     * IOAPI.getListOfLine() -> [String]
     *
-    * retourne la liste de toute les lignes référencées dans le json
+    * retourne la liste de toute les lignes
     *
     */
     static func getListOfLine() -> [String]
     {
-        return []
+        return ELine.getListOfLines()
     }
 }
