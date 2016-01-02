@@ -18,6 +18,7 @@
 		A9BFFB7B1C31BD9A005AD814 /* arretsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DF678C1C3191860071D001 /* arretsTableVC.swift */; };
 		A9BFFB7C1C31BD9A005AD814 /* BackTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F624331C1A03790018BA32 /* BackTableVC.swift */; };
 		A9BFFB891C31C2A6005AD814 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9BFFB881C31C2A6005AD814 /* SWRevealViewController.m */; };
+		A9F0204D1C38669900257D8E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = A9F0204C1C38669900257D8E /* .gitignore */; };
 		A9F623DE1C19E3790018BA32 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9F623DC1C19E3790018BA32 /* Main.storyboard */; };
 		A9F623E01C19E3790018BA32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9F623DF1C19E3790018BA32 /* Assets.xcassets */; };
 		A9F623E31C19E3790018BA32 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9F623E11C19E3790018BA32 /* LaunchScreen.storyboard */; };
@@ -40,6 +41,7 @@
 		A9BFFB871C31C2A6005AD814 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		A9BFFB881C31C2A6005AD814 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		A9DF678C1C3191860071D001 /* arretsTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = arretsTableVC.swift; sourceTree = "<group>"; };
+		A9F0204C1C38669900257D8E /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		A9F623D51C19E3790018BA32 /* appBus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = appBus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9F623D81C19E3790018BA32 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A9F623DA1C19E3790018BA32 /* accueilVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = accueilVC.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 				A9F623E41C19E3790018BA32 /* Info.plist */,
 				A9779D831C1C7D3000A40E13 /* CenturyGothic.ttf */,
 				A9F624321C19FF6F0018BA32 /* Supporting Files */,
+				A9F0204C1C38669900257D8E /* .gitignore */,
 			);
 			path = appBus;
 			sourceTree = "<group>";
@@ -197,6 +200,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9779D851C1C7F5A00A40E13 /* CenturyGothic.ttf in Resources */,
+				A9F0204D1C38669900257D8E /* .gitignore in Resources */,
 				A9F623E31C19E3790018BA32 /* LaunchScreen.storyboard in Resources */,
 				A9F623E01C19E3790018BA32 /* Assets.xcassets in Resources */,
 				A965AD3F1C373B83004DF24F /* ligne9.pdf in Resources */,
