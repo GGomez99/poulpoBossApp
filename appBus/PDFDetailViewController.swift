@@ -14,15 +14,16 @@ class PDFDetailViewController: UIViewController {
     var webView: WKWebView!
     var PDFDetail: String!
     
+    //load WK
     override func loadView() {
         webView = WKWebView()
         view = webView
     }
     
+    //give PDF to WK to load it
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(PDFDetail)
-        let url: NSURL = NSURL(string: PDFDetail)!
+        let url = NSURL(string: "https://www.google.com")!
         webView.loadRequest(NSURLRequest(URL: url))
     }
 

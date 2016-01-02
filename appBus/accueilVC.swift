@@ -15,6 +15,11 @@ class accueilVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //set style de tous les boutons par défaut
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: g.mainFont, size: 20)!, NSForegroundColorAttributeName : g.mainColorFont], forState: UIControlState.Normal)
+        UINavigationBar.appearance().tintColor = g.mainColorFont
+        
         // set l'action du bouton menu
         menu.target = self.revealViewController()
         menu.action = Selector("revealToggle:")
