@@ -94,6 +94,19 @@
             </objects>
             <point key="canvasLocation" x="1418" y="391"/>
         </scene>
+        <!--Split View Controller-->
+        <scene sceneID="kx0-9K-K2N">
+            <objects>
+                <splitViewController id="c1K-IL-Lsw" sceneMemberID="viewController">
+                    <connections>
+                        <segue destination="qCw-PW-jR1" kind="relationship" relationship="masterViewController" id="Bnf-Vm-Pig"/>
+                        <segue destination="0fZ-xm-N0M" kind="relationship" relationship="detailViewController" id="edN-kK-xNG"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xIH-Yi-tzh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1418" y="-699"/>
+        </scene>
         <!--Arrets TableVC-->
         <scene sceneID="2H4-0j-bfP">
             <objects>
@@ -121,6 +134,41 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0F0-Fa-K31" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2109" y="391"/>
+        </scene>
+        <!--PDFDetail-->
+        <scene sceneID="HiU-kg-1F8">
+            <objects>
+                <navigationController title="PDFDetail" id="0fZ-xm-N0M" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="oYf-Dz-2Dc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="JyX-Gt-Ze9" kind="relationship" relationship="rootViewController" id="LMW-Ay-Kec"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gwq-jZ-nXV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2199" y="-302"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="GJK-Dj-xeF">
+            <objects>
+                <viewController id="JyX-Gt-Ze9" customClass="PDFDetailViewController" customModule="appBus" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rNA-RO-fYH"/>
+                        <viewControllerLayoutGuide type="bottom" id="3P5-L4-TOg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Vpe-jO-743">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="6HB-K4-HrJ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JHC-Xz-auO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2972" y="-302"/>
         </scene>
         <!--PDF TableVC-->
         <scene sceneID="LP8-72-sj2">
@@ -155,15 +203,18 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Lignes" id="gVx-29-jvu"/>
+                    <connections>
+                        <segue destination="0fZ-xm-N0M" kind="showDetail" identifier="showDetail" id="f3D-WS-obY"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dgG-o9-3zE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2238" y="-346"/>
+            <point key="canvasLocation" x="2972" y="-1072"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--PDFMaster-->
         <scene sceneID="C6W-oU-zp3">
             <objects>
-                <navigationController id="qCw-PW-jR1" sceneMemberID="viewController">
+                <navigationController title="PDFMaster" id="qCw-PW-jR1" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="WYy-as-7ad">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -177,7 +228,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jwe-0V-56h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1418" y="-346"/>
+            <point key="canvasLocation" x="2199" y="-1072"/>
         </scene>
         <!--AccueilVC-->
         <scene sceneID="Bf8-lt-cCW">
@@ -269,7 +320,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="qCw-PW-jR1" kind="custom" customClass="SWRevealViewControllerSeguePushController" id="eaZ-uC-TUq"/>
+                                    <segue destination="c1K-IL-Lsw" kind="custom" customClass="SWRevealViewControllerSeguePushController" id="6Ws-wh-fvl"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -289,5 +340,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="aOx-CY-29R"/>
+        <segue reference="f3D-WS-obY"/>
     </inferredMetricsTieBreakers>
 </document>

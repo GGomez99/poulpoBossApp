@@ -9,8 +9,6 @@
 import Foundation
 
 struct global {
-    var mainFont: String = ""
+    var mainFont: String = "Century Gothic"
 }
 var g = global()
-
-g.mainFont = "Century Gothic"
