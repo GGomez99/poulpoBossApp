@@ -14,7 +14,6 @@ class IOAPI
     private static let jsonReader: JSONReader = JSONReader()
 
     static func start() {
-    netReader.test()
     }
     
     static func getTime(arret: String) -> Arret
