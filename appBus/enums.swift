@@ -50,13 +50,48 @@ extension ELine
         ELine.CFB : "Ligne special CFB",
         ELine.Plan_General : "Plan Géneral"]
     
+    private static let listOfELines: [ELine] =
+    [ELine.L_1,
+        ELine.L_1_nuit,
+        ELine.L_1_vac,
+        ELine.L_2,
+        ELine.L_30_31,
+        ELine.L_5,
+        ELine.L_6,
+        ELine.L_6_vac,
+        ELine.L_7,
+        ELine.L_8,
+        ELine.L_8_vac,
+        ELine.L_9,
+        ELine.L_10,
+        ELine.L_11,
+        ELine.L_12,
+        ELine.L_14,
+        ELine.L_15,
+        ELine.L_16,
+        ELine.L_17,
+        ELine.L_18,
+        ELine.L_18_vac,
+        ELine.L_19,
+        ELine.L_20,
+        ELine.L_21,
+        ELine.L_22,
+        ELine.L_23,
+        ELine.L_24,
+        ELine.L_25,
+        ELine.L_26,
+        ELine.L_28,
+        ELine.L_100,
+        ELine.CFB,
+        ELine.Plan_General]
+    
     static func getListOfLines() -> [String]
     {
         var array: [String] = []
         
-        for (_,line) in listOfLines
+        for eline in listOfELines
         {
-            array.append(line)
+            array.append(listOfLines[eline]!)
         }
         return array
     }
