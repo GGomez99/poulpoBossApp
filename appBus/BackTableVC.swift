@@ -42,7 +42,8 @@ class backTableVC: UITableViewController {
         
         return cell
     }
-
+    
+    //active l'interaction avec l'interface uniquement quand le menu est fermé
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         

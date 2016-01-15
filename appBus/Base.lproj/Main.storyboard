@@ -213,9 +213,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="4Pc-4m-a2K">
-                                <rect key="frame" x="290" y="290" width="20" height="20"/>
-                            </activityIndicatorView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gov-hu-N24">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
                                 <constraints>
@@ -234,9 +231,23 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I6g-Fh-Nj9">
+                                <rect key="frame" x="225" y="225" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="fN9-AG-Yuh"/>
+                                    <constraint firstAttribute="width" constant="150" id="xdc-Zk-1BY"/>
+                                </constraints>
+                                <color key="tintColor" red="0.72168135639999997" green="0.0" blue="0.41889169809999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Button" image="LinesButton"/>
+                                <connections>
+                                    <segue destination="qCw-PW-jR1" kind="custom" customClass="SWRevealViewControllerSeguePushController" id="Qok-oZ-Z3l"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="I6g-Fh-Nj9" firstAttribute="centerX" secondItem="0kQ-3p-N1m" secondAttribute="centerX" id="DfO-97-w9Z"/>
+                            <constraint firstItem="I6g-Fh-Nj9" firstAttribute="centerY" secondItem="0kQ-3p-N1m" secondAttribute="centerY" id="JNS-L6-FY5"/>
                             <constraint firstItem="gov-hu-N24" firstAttribute="top" secondItem="kua-AX-jX6" secondAttribute="bottom" constant="-20" id="dtP-Fs-D69"/>
                             <constraint firstAttribute="trailing" secondItem="gov-hu-N24" secondAttribute="trailing" id="i1o-3s-ZZ6"/>
                             <constraint firstItem="gov-hu-N24" firstAttribute="leading" secondItem="0kQ-3p-N1m" secondAttribute="leading" id="t9D-TG-PHi"/>
@@ -307,9 +318,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="LinesButton" width="360" height="360"/>
         <image name="menubuttonV2" width="41" height="41"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="aOx-CY-29R"/>
+        <segue reference="Qok-oZ-Z3l"/>
     </inferredMetricsTieBreakers>
 </document>
