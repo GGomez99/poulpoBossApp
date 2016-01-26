@@ -10,7 +10,7 @@ import Foundation
 
 struct Line
 {
-    let name: String
+    let name: ELine
     let direction: String
 }
 
@@ -30,5 +30,5 @@ struct Arret
 
 enum hState
 {
-    case prochain, horaire, pasDeBus, pasDeConection
+    case prochain, pasDeBus, pasDeConection
 }
