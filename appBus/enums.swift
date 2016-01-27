@@ -10,7 +10,7 @@ import Foundation
 
 enum ELine
 {
-    case L_1_nuit,L_1_vac, L_1, L_2, L_5, L_6, L_6_vac, L_7, L_8, L_8_vac, L_9, L_10, L_11, L_12, L_14, L_15, L_16, L_17, L_18, L_18_vac, L_19, L_20, L_21, L_22, L_23, L_24, L_25, L_26, L_28, L_30_31, L_100, CFB, Plan_General
+    case L_1_nuit,L_1_vac, L_1, L_2, L_5, L_6, L_6_vac, L_7, L_8, L_8_vac, L_9, L_10, L_11, L_12, L_14, L_15, L_16, L_17, L_18, L_18_vac, L_19, L_20, L_21, L_22, L_23, L_24, L_25, L_26, L_28, L_30, L_31, L_100, CFB, Plan_General
 }
 
 extension ELine
@@ -20,7 +20,8 @@ extension ELine
         ELine.L_1_nuit : "Ligne 1 soirée",
         ELine.L_1_vac : "Ligne 1 vacances",
         ELine.L_2 : "Ligne 2",
-        ELine.L_30_31 : "Ligne 3",
+        ELine.L_30 : "Ligne 30",
+        ELine.L_31 : "Ligne 31",
         ELine.L_5 : "Ligne 5",
         ELine.L_6 : "Ligne 6",
         ELine.L_6_vac : "Ligne 6 vacances",
@@ -55,7 +56,8 @@ extension ELine
         ELine.L_1_nuit : "1",
         ELine.L_1_vac : "1",
         ELine.L_2 : "2",
-        ELine.L_30_31 : "3",
+        ELine.L_30 : "30",
+        ELine.L_31 : "31",
         ELine.L_5 : "5",
         ELine.L_6 : "6",
         ELine.L_6_vac : "6",
@@ -83,14 +85,15 @@ extension ELine
         ELine.L_28 : "28",
         ELine.L_100 : "100",
         ELine.CFB : "CFB",
-        ELine.Plan_General : "null"]
+        ELine.Plan_General : "PG"]
     
     private static let listOfELines: [ELine] =
     [ELine.L_1,
         ELine.L_1_nuit,
         ELine.L_1_vac,
         ELine.L_2,
-        ELine.L_30_31,
+        ELine.L_30,
+        ELine.L_31,
         ELine.L_5,
         ELine.L_6,
         ELine.L_6_vac,
