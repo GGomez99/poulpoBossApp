@@ -83,7 +83,7 @@ extension ELine
         ELine.L_28 : "28",
         ELine.L_100 : "100",
         ELine.CFB : "CFB",
-        ELine.Plan_General : "PG"]
+        ELine.Plan_General : "null"]
     
     private static let listOfELines: [ELine] =
     [ELine.L_1,
