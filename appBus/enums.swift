@@ -50,6 +50,41 @@ extension ELine
         ELine.CFB : "Ligne special CFB",
         ELine.Plan_General : "Plan Géneral"]
     
+    public static let listOflineNo: [ELine : String] =
+    [ELine.L_1 : "1",
+        ELine.L_1_nuit : "1",
+        ELine.L_1_vac : "1",
+        ELine.L_2 : "2",
+        ELine.L_30_31 : "3",
+        ELine.L_5 : "5",
+        ELine.L_6 : "6",
+        ELine.L_6_vac : "6",
+        ELine.L_7 : "7",
+        ELine.L_8 : "8",
+        ELine.L_8_vac : "8",
+        ELine.L_9 : "9",
+        ELine.L_10 : "10",
+        ELine.L_11 : "11",
+        ELine.L_12 : "12",
+        ELine.L_14 : "14",
+        ELine.L_15 : "15",
+        ELine.L_16 : "16",
+        ELine.L_17 : "17",
+        ELine.L_18 : "18",
+        ELine.L_18_vac : "18",
+        ELine.L_19 : "19",
+        ELine.L_20 : "20",
+        ELine.L_21 : "21",
+        ELine.L_22 : "22",
+        ELine.L_23 : "23",
+        ELine.L_24 : "24",
+        ELine.L_25 : "25",
+        ELine.L_26 : "26",
+        ELine.L_28 : "28",
+        ELine.L_100 : "100",
+        ELine.CFB : "CFB",
+        ELine.Plan_General : "null"]
+    
     private static let listOfELines: [ELine] =
     [ELine.L_1,
         ELine.L_1_nuit,
@@ -94,6 +129,18 @@ extension ELine
             array.append(listOfLines[eline]!)
         }
         return array
+    }
+    
+    static func getELineFromNo(lineNo: String) -> ELine
+    {
+        for eline in listOfELines
+        {
+            if(listOflineNo[eline] == lineNo)
+            {
+                return eline;
+            }
+        }
+        return ELine.L_1
     }
     
     static func toString(eline: ELine) -> String

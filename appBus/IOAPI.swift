@@ -14,14 +14,15 @@ class IOAPI
     private static let jsonReader: JSONReader = JSONReader()
 
     static func start() {
+        netReader.test()
     }
     
-    static func getTime(arret: String) -> Arret
+    static func getTime(arret: String, direction: String) -> Arret
     {
         return Arret(name: "arret", horaires: [])
     }
     
-    static func getTime(arret: String, line: String) -> Arret
+    static func getTime(arret: String, direction: String, line: String) -> Arret
     {
         return Arret(name: "arret", horaires: [])
     }
