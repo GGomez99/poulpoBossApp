@@ -12,7 +12,7 @@ import CoreData
 class PDFTableVC: UITableViewController {
     
     var listLinesStr: [String] = ELine.getListOfLines()
-    var listLinesELine: [ELine] = ELine.listOfELines
+    var listLinesID: [String] = ELine.getListOfLinesNo()
     
     //initialize coredata
     var PDFList = [NSManagedObject]()
@@ -29,6 +29,7 @@ class PDFTableVC: UITableViewController {
         let navbarFont = UIFont(name: g.mainFont, size: 25) ?? UIFont.systemFontOfSize(25)
         navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: navbarFont, NSForegroundColorAttributeName: UIColor(hue: 0.905, saturation: 0.88, brightness: 0.78, alpha: 1)]
         navigationController?.navigationBar.barTintColor = UIColor(hue: 312/359, saturation: 10/100, brightness: 95/100, alpha: 1)
+        
     }
 
     override func didReceiveMemoryWarning() {

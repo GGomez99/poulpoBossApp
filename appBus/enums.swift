@@ -53,17 +53,17 @@ extension ELine
     
     public static let listOflineNo: [ELine : String] =
     [ELine.L_1 : "1",
-        ELine.L_1_nuit : "1",
-        ELine.L_1_vac : "1",
+        ELine.L_1_nuit : "1nuit",
+        ELine.L_1_vac : "1vac",
         ELine.L_2 : "2",
         ELine.L_30 : "30",
         ELine.L_31 : "31",
         ELine.L_5 : "5",
         ELine.L_6 : "6",
-        ELine.L_6_vac : "6",
+        ELine.L_6_vac : "6vac",
         ELine.L_7 : "7",
         ELine.L_8 : "8",
-        ELine.L_8_vac : "8",
+        ELine.L_8_vac : "8vac",
         ELine.L_9 : "9",
         ELine.L_10 : "10",
         ELine.L_11 : "11",
@@ -73,7 +73,7 @@ extension ELine
         ELine.L_16 : "16",
         ELine.L_17 : "17",
         ELine.L_18 : "18",
-        ELine.L_18_vac : "18",
+        ELine.L_18_vac : "18vac",
         ELine.L_19 : "19",
         ELine.L_20 : "20",
         ELine.L_21 : "21",
@@ -130,6 +130,17 @@ extension ELine
         for eline in listOfELines
         {
             array.append(listOfLines[eline]!)
+        }
+        return array
+    }
+    
+    static func getListOfLinesNo() -> [String]
+    {
+        var array: [String] = []
+        
+        for eline in listOfELines
+        {
+            array.append(listOflineNo[eline]!)
         }
         return array
     }
