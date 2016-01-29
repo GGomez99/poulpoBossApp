@@ -37,7 +37,7 @@ extension ELine
         ELine.L_16 : "Ligne 16",
         ELine.L_17 : "Ligne 17",
         ELine.L_18 : "Ligne 18",
-        ELine.L_18_vac : "Ligne 18 vac",
+        ELine.L_18_vac : "Ligne 18 vacances",
         ELine.L_19 : "Ligne 19",
         ELine.L_20 : "Ligne 20",
         ELine.L_21 : "Ligne 21",
@@ -87,7 +87,7 @@ extension ELine
         ELine.CFB : "CFB",
         ELine.Plan_General : "PG"]
     
-    private static let listOfELines: [ELine] =
+    public static let listOfELines: [ELine] =
     [ELine.L_1,
         ELine.L_1_nuit,
         ELine.L_1_vac,

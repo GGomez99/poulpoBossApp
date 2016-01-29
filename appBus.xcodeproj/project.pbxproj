@@ -10,7 +10,6 @@
 		A965AD351C370A7F004DF24F /* PDFTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A965AD341C370A7F004DF24F /* PDFTableVC.swift */; };
 		A965AD3B1C372F99004DF24F /* globalSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A965AD3A1C372F99004DF24F /* globalSettings.swift */; };
 		A965AD3D1C373B0E004DF24F /* PDFDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A965AD3C1C373B0E004DF24F /* PDFDetailViewController.swift */; };
-		A965AD3F1C373B83004DF24F /* ligne9.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A965AD3E1C373B83004DF24F /* ligne9.pdf */; };
 		A9779D851C1C7F5A00A40E13 /* CenturyGothic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9779D831C1C7D3000A40E13 /* CenturyGothic.ttf */; };
 		A9BFFB781C31BD9A005AD814 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F623D81C19E3790018BA32 /* AppDelegate.swift */; };
 		A9BFFB791C31BD9A005AD814 /* accueilVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F623DA1C19E3790018BA32 /* accueilVC.swift */; };
@@ -18,6 +17,7 @@
 		A9BFFB7B1C31BD9A005AD814 /* arretsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DF678C1C3191860071D001 /* arretsTableVC.swift */; };
 		A9BFFB7C1C31BD9A005AD814 /* BackTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F624331C1A03790018BA32 /* BackTableVC.swift */; };
 		A9BFFB891C31C2A6005AD814 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9BFFB881C31C2A6005AD814 /* SWRevealViewController.m */; };
+		A9E435921C5BBBB8009B60E9 /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A9E435901C5BBBB8009B60E9 /* CoreData.xcdatamodeld */; };
 		A9F0204D1C38669900257D8E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = A9F0204C1C38669900257D8E /* .gitignore */; };
 		A9F623DE1C19E3790018BA32 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9F623DC1C19E3790018BA32 /* Main.storyboard */; };
 		A9F623E01C19E3790018BA32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9F623DF1C19E3790018BA32 /* Assets.xcassets */; };
@@ -34,13 +34,13 @@
 		A965AD341C370A7F004DF24F /* PDFTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFTableVC.swift; sourceTree = "<group>"; };
 		A965AD3A1C372F99004DF24F /* globalSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = globalSettings.swift; sourceTree = "<group>"; };
 		A965AD3C1C373B0E004DF24F /* PDFDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFDetailViewController.swift; sourceTree = "<group>"; };
-		A965AD3E1C373B83004DF24F /* ligne9.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ligne9.pdf; sourceTree = "<group>"; };
 		A9779D741C1C627400A40E13 /* arretsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = arretsVC.swift; sourceTree = "<group>"; };
 		A9779D831C1C7D3000A40E13 /* CenturyGothic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = CenturyGothic.ttf; sourceTree = "<group>"; };
 		A9BFFB861C31C2A5005AD814 /* appBus-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "appBus-Bridging-Header.h"; sourceTree = "<group>"; };
 		A9BFFB871C31C2A6005AD814 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		A9BFFB881C31C2A6005AD814 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		A9DF678C1C3191860071D001 /* arretsTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = arretsTableVC.swift; sourceTree = "<group>"; };
+		A9E435911C5BBBB8009B60E9 /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
 		A9F0204C1C38669900257D8E /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		A9F623D51C19E3790018BA32 /* appBus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = appBus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9F623D81C19E3790018BA32 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -73,7 +73,6 @@
 			isa = PBXGroup;
 			children = (
 				A965AD341C370A7F004DF24F /* PDFTableVC.swift */,
-				A965AD3E1C373B83004DF24F /* ligne9.pdf */,
 				A965AD3C1C373B0E004DF24F /* PDFDetailViewController.swift */,
 			);
 			name = "PDF List";
@@ -111,8 +110,9 @@
 				A9F623E11C19E3790018BA32 /* LaunchScreen.storyboard */,
 				A9F623E41C19E3790018BA32 /* Info.plist */,
 				A9779D831C1C7D3000A40E13 /* CenturyGothic.ttf */,
-				A9F624321C19FF6F0018BA32 /* Supporting Files */,
 				A9F0204C1C38669900257D8E /* .gitignore */,
+				A9E435901C5BBBB8009B60E9 /* CoreData.xcdatamodeld */,
+				A9F624321C19FF6F0018BA32 /* Supporting Files */,
 			);
 			path = appBus;
 			sourceTree = "<group>";
@@ -203,7 +203,6 @@
 				A9F0204D1C38669900257D8E /* .gitignore in Resources */,
 				A9F623E31C19E3790018BA32 /* LaunchScreen.storyboard in Resources */,
 				A9F623E01C19E3790018BA32 /* Assets.xcassets in Resources */,
-				A965AD3F1C373B83004DF24F /* ligne9.pdf in Resources */,
 				E0EAED191C31E68B00D80BFE /* antibes.json in Resources */,
 				A9F623DE1C19E3790018BA32 /* Main.storyboard in Resources */,
 			);
@@ -218,6 +217,7 @@
 			files = (
 				E0EAED131C31DF3900D80BFE /* structs.swift in Sources */,
 				A965AD3B1C372F99004DF24F /* globalSettings.swift in Sources */,
+				A9E435921C5BBBB8009B60E9 /* CoreData.xcdatamodeld in Sources */,
 				A9BFFB781C31BD9A005AD814 /* AppDelegate.swift in Sources */,
 				A965AD351C370A7F004DF24F /* PDFTableVC.swift in Sources */,
 				A9BFFB791C31BD9A005AD814 /* accueilVC.swift in Sources */,
@@ -391,6 +391,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A9E435901C5BBBB8009B60E9 /* CoreData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A9E435911C5BBBB8009B60E9 /* CoreData.xcdatamodel */,
+			);
+			currentVersion = A9E435911C5BBBB8009B60E9 /* CoreData.xcdatamodel */;
+			path = CoreData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = A9F623CD1C19E3790018BA32 /* Project object */;
 }
