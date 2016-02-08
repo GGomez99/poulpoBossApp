@@ -56,8 +56,6 @@ class PDFTableVC: UITableViewController {
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 PDFTableVC.indexPath = indexPath.row
-                print("PDFDetailViewController().indexPath = \(PDFTableVC.indexPath)")
-                print("indexPath.row = \(indexPath.row)")
             }
         }
     }
