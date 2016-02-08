@@ -10,6 +10,8 @@ import UIKit
 
 class arretsTableVC: UITableViewController {
 
+    var listArretStr : [String] = JSONReader.getAllArret()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -20,9 +22,22 @@ class arretsTableVC: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    //number of cells
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        // #warning Incomplete implementation, return the number of rows
+        return listArretStr.count
     }
+    
+    //edit cells
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("lineCell", forIndexPath: indexPath)
+        
+        cell.textLabel!.text = "\(listArretStr[indexPath.row])"
+        cell.textLabel!.font = UIFont(name: g.mainFont, size: 25)
+        
+        return cell
+    }
+
 
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
