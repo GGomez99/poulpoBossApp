@@ -12,7 +12,6 @@ import CoreData
 
 class PDFDetailViewController: UIViewController {
 
-    
     @IBOutlet weak var webView: UIWebView!
     
     var listLinesID: [String] = ELine.getListOfLinesNo()
