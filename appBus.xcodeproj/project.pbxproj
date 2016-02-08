@@ -40,7 +40,7 @@
 		A9BFFB861C31C2A5005AD814 /* appBus-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "appBus-Bridging-Header.h"; sourceTree = "<group>"; };
 		A9BFFB871C31C2A6005AD814 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		A9BFFB881C31C2A6005AD814 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
-		A9DF678C1C3191860071D001 /* arretsTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = arretsTableVC.swift; sourceTree = "<group>"; };
+		A9DF678C1C3191860071D001 /* arretsTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = arretsTableVC.swift; sourceTree = "<group>"; };
 		A9E435911C5BBBB8009B60E9 /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
 		A9E435931C5BF2FD009B60E9 /* PDFDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFDownloader.swift; sourceTree = "<group>"; };
 		A9F0204C1C38669900257D8E /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
@@ -175,7 +175,7 @@
 				TargetAttributes = {
 					A9F623D41C19E3790018BA32 = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = QCQCJH73F3;
+						DevelopmentTeam = A7PUE57NF4;
 					};
 				};
 			};
@@ -351,9 +351,9 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "$(SRCROOT)/appBus/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.SparxCo.appBus;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ClemCo.appBus;
 				PRODUCT_NAME = appBus;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "appBus/appBus-Bridging-Header.h";
@@ -370,9 +370,9 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "$(SRCROOT)/appBus/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.SparxCo.appBus;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ClemCo.appBus;
 				PRODUCT_NAME = appBus;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "appBus/appBus-Bridging-Header.h";
