@@ -18,6 +18,7 @@
 		A9BFFB7C1C31BD9A005AD814 /* BackTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F624331C1A03790018BA32 /* BackTableVC.swift */; };
 		A9BFFB891C31C2A6005AD814 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9BFFB881C31C2A6005AD814 /* SWRevealViewController.m */; };
 		A9E435921C5BBBB8009B60E9 /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A9E435901C5BBBB8009B60E9 /* CoreData.xcdatamodeld */; };
+		A9E435941C5BF2FD009B60E9 /* PDFDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E435931C5BF2FD009B60E9 /* PDFDownloader.swift */; };
 		A9F0204D1C38669900257D8E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = A9F0204C1C38669900257D8E /* .gitignore */; };
 		A9F623DE1C19E3790018BA32 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9F623DC1C19E3790018BA32 /* Main.storyboard */; };
 		A9F623E01C19E3790018BA32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9F623DF1C19E3790018BA32 /* Assets.xcassets */; };
@@ -41,6 +42,7 @@
 		A9BFFB881C31C2A6005AD814 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		A9DF678C1C3191860071D001 /* arretsTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = arretsTableVC.swift; sourceTree = "<group>"; };
 		A9E435911C5BBBB8009B60E9 /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
+		A9E435931C5BF2FD009B60E9 /* PDFDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFDownloader.swift; sourceTree = "<group>"; };
 		A9F0204C1C38669900257D8E /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		A9F623D51C19E3790018BA32 /* appBus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = appBus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9F623D81C19E3790018BA32 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 			children = (
 				A965AD341C370A7F004DF24F /* PDFTableVC.swift */,
 				A965AD3C1C373B0E004DF24F /* PDFDetailViewController.swift */,
+				A9E435931C5BF2FD009B60E9 /* PDFDownloader.swift */,
 			);
 			name = "PDF List";
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 				A965AD351C370A7F004DF24F /* PDFTableVC.swift in Sources */,
 				A9BFFB791C31BD9A005AD814 /* accueilVC.swift in Sources */,
 				E0EAED151C31E3CA00D80BFE /* NetReader.swift in Sources */,
+				A9E435941C5BF2FD009B60E9 /* PDFDownloader.swift in Sources */,
 				A9BFFB7A1C31BD9A005AD814 /* arretsVC.swift in Sources */,
 				A9BFFB7B1C31BD9A005AD814 /* arretsTableVC.swift in Sources */,
 				E0EAED171C31E3DB00D80BFE /* JSONReader.swift in Sources */,

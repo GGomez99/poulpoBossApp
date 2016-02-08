@@ -53,7 +53,9 @@ class PDFTableVC: UITableViewController {
         return cell
     }
     
-    func readPDFsSaved() -> [NSManagedObject] {
+    //load stuff from PDFsSaved
+    
+    func readPDFsSaved(PDFSID: String) -> Bool {
         //call appDelegate
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
@@ -70,12 +72,93 @@ class PDFTableVC: UITableViewController {
         
         //set to false if empty
         if (PDFList == []) {
+            
+            let entity =  NSEntityDescription.entityForName("PDFsSaved", inManagedObjectContext:managedContext)
+            
+            let LineKey = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
+            
+            for IDLine in listLinesID {
+                
+                LineKey.setValue(false, forKey: "Line" + IDLine)
+            
+            }
+            
+            do {
+                //save
+                try managedContext.save()
+                
+                //reload
+                let results = try managedContext.executeFetchRequest(fetchRequest)
+                PDFList = results as! [NSManagedObject]
+            } catch let error as NSError  {
+                print("Could not save and reload \(error), \(error.userInfo)")
+            }
+            
+            print(PDFList)
         }
         
+        let PDFSKey = "Line" + PDFSID
+        var finalBool = Bool()
         
-        return PDFList
+        for PDFListObject in PDFList as [NSManagedObject] {
+            if let PDFListObjectBool = PDFListObject.valueForKey(PDFSKey) as? Bool {
+                finalBool = PDFListObjectBool
+            }
+        }
+        print(PDFList)
+        return finalBool
     }
     
+    //save stuff in PDFsSaved
+    
+    func savePDFsSaved(PDFSID: String, keyBoolean: Bool) {
+        //call appDelegate
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        
+        //call managedObject
+        let managedContext = appDelegate.managedObjectContext
+        
+        let entity =  NSEntityDescription.entityForName("PDFsSaved", inManagedObjectContext:managedContext)
+        
+        let LineKey = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
+        
+        //set PDFSKey
+
+        let PDFSKey = "Line" + PDFSID
+        
+        LineKey.setValue(keyBoolean,forKey: PDFSKey)
+        
+        //save
+        do {
+            try managedContext.save()
+        } catch let error as NSError  {
+            print("Could not save \(error), \(error.userInfo)")
+        }
+        print("set \(PDFSKey) to \(keyBoolean)")
+    }
+    
+    //check and get PDF local link
+    
+    func getPDFLink(numberLine: String, pLine: String) -> NSURL {
+        let fm = NSFileManager.defaultManager()
+        let path = NSBundle.mainBundle().resourcePath!
+        let items = try! fm.contentsOfDirectoryAtPath(path)
+        print("items :")
+        print(items)
+        let docURL = ((NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)).last as NSURL!).URLByAppendingPathComponent("PDFs/")
+        print("docURL :")
+        print(docURL)
+        let searchPrefix = "L" + String(format: "%03d", Int(numberLine)!) + "_" + pLine
+        print(searchPrefix)
+        var finalURL = NSURL()
+        
+        for item in items {
+            if item.hasPrefix(searchPrefix) {
+                finalURL = NSURL(fileURLWithPath: item, relativeToURL: docURL)
+            }
+        }
+        return finalURL
+    }
     
     //envoie sur le PDFDetailViewController (segue)
 
@@ -83,56 +166,60 @@ class PDFTableVC: UITableViewController {
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 
+                //set localPDFLink
+                var localPDFLink = NSURL()
+                
+                //set parameters for the link
+                var serverP = ""
+                var serverID = ""
+                
+                if (listLinesID[indexPath.row].rangeOfString("vac") != nil) {
+                    serverP = "vac"
+                    serverID = listLinesID[indexPath.row].stringByReplacingOccurrencesOfString("vac", withString: "")
+                } else if (listLinesID[indexPath.row].rangeOfString("nuit") != nil) {
+                    serverP = "nuit"
+                    serverID = listLinesID[indexPath.row].stringByReplacingOccurrencesOfString("nuit", withString: "")
+                } else {
+                    serverID = listLinesID[indexPath.row]
+                }
 
-                //initialize stuff
                 
-                var PDFList = [NSManagedObject]()
-                
-                //call appDelegate
-                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                
-                //call managedObject
-                let managedContext = appDelegate.managedObjectContext
-                
-                
-                //write PDFsSaved
-                
-                //set entity
-                let entity =  NSEntityDescription.entityForName("PDFsSaved", inManagedObjectContext:managedContext)
-                
-                let Line9 = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
-                
-                Line9.setValue(false, forKey: "Line9")
-                
-                do {
-                    try managedContext.save()
+                //check if line was already saved
+                let isLineSaved = readPDFsSaved(listLinesID[indexPath.row])
+                print(isLineSaved)
+                if isLineSaved == false {
                     
-                    PDFList.append(Line9)
-                } catch let error as NSError  {
-                    print("Could not save \(error), \(error.userInfo)")
+                    //get pdf link
+                    //let URL = NSURL(string: "http://envibus.kyrandia.org/PDFs/?id=" + serverID + "&p=" + serverP)
+                    let URL = NSURL(string: "http://envibus.kyrandia.org/PDFs/L001_PS_janv16.pdf")
+                    print("url is \(URL)")
+                        
+                    HttpDownloader.loadFileAsync(URL!, completion: {(path: String, error: NSError!) in
+                        
+                        print("pdf downloaded in \(path)")
+                        self.savePDFsSaved(self.listLinesID[indexPath.row], keyBoolean: true)
+                            
+                        //Get the local PDF directory
+                        /*localPDFLink = self.getPDFLink(serverID, pLine: serverP)
+                            
+                        let filePath = NSBundle.mainBundle().pathForResource("L001_PS_janv16", ofType:"pdf")
+                        let data = NSData(contentsOfFile:filePath!)
+                        print(filePath)
+                        print(data)*/
+                        print(NSURL(string: path))
+                        //envoyer le path du pdf
+                        PDFDetailViewController().PDFDetail = NSURL(string: path)
+                        
+                    })
+                    //if isLineSaved == true
+                } else {
+                    //Get the local PDF directory
+                    localPDFLink = self.getPDFLink(serverID, pLine: serverP)
+                    
+                    print(localPDFLink)
+                    //envoyer le path du pdf
+                    PDFDetailViewController().PDFDetail = localPDFLink
                 }
-                
-                
-                
-                //read PDFsSaved
-                
-                let fetchRequest = NSFetchRequest(entityName: "PDFsSaved")
-                do {
-                    let results = try managedContext.executeFetchRequest(fetchRequest)
-                    PDFList = results as! [NSManagedObject]
-                } catch let error as NSError {
-                    print("Could not fetch \(error), \(error.userInfo)")
-                }
-                
-                if (PDFList == []) {
-                }
-                
-                print(PDFList)
-                
-                
-                //envoyer le path du pdf (temporaire)
-                PDFDetailViewController().PDFDetail = "\(NSBundle.mainBundle().resourcePath!)/ligne9.pdf"
-                
             }
         }
     }

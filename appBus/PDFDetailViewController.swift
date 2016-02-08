@@ -12,7 +12,7 @@ import WebKit
 class PDFDetailViewController: UIViewController {
     
     var webView: WKWebView!
-    var PDFDetail: String!
+    var PDFDetail: NSURL?
     
     //load WK
     override func loadView() {
@@ -23,8 +23,13 @@ class PDFDetailViewController: UIViewController {
     //give PDF to WK to load it
     override func viewDidLoad() {
         super.viewDidLoad()
-        let url = NSURL(string: "https://www.google.com")!
-        webView.loadRequest(NSURLRequest(URL: url))
+        
+        if let url = PDFDetail as NSURL! {
+            print("Loading URL")
+            webView.loadRequest(NSURLRequest(URL: url))
+        } else {
+            print("URL fucked up")
+        }
     }
 
 }

@@ -5,7 +5,6 @@
         <attribute name="line1nuit" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="line1vac" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="line2" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="line4" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="line5" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="line6" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="line6vac" optional="YES" attributeType="Boolean" syncable="YES"/>
@@ -16,7 +15,6 @@
         <attribute name="line10" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="line11" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="line12" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="line13" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="line14" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="line15" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="line16" optional="YES" attributeType="Boolean" syncable="YES"/>
@@ -31,13 +29,14 @@
         <attribute name="line24" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="line25" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="line26" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="line27" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="line28" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="line30" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="line31" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="line100" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="lineCFB" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="linePG" optional="YES" attributeType="Boolean" syncable="YES"/>
     </entity>
     <elements>
-        <element name="PDFsSaved" positionX="-63" positionY="-18" width="128" height="570"/>
+        <element name="PDFsSaved" positionX="-63" positionY="-18" width="128" height="555"/>
     </elements>
 </model>
