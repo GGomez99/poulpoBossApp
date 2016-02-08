@@ -175,7 +175,7 @@
 				TargetAttributes = {
 					A9F623D41C19E3790018BA32 = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = A7PUE57NF4;
+						DevelopmentTeam = QCQCJH73F3;
 					};
 				};
 			};
@@ -351,9 +351,9 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "$(SRCROOT)/appBus/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ClemCo.appBus;
+				PRODUCT_BUNDLE_IDENTIFIER = com.SparxCo.appBus;
 				PRODUCT_NAME = appBus;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "appBus/appBus-Bridging-Header.h";
@@ -370,9 +370,9 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "$(SRCROOT)/appBus/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ClemCo.appBus;
+				PRODUCT_BUNDLE_IDENTIFIER = com.SparxCo.appBus;
 				PRODUCT_NAME = appBus;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "appBus/appBus-Bridging-Header.h";
