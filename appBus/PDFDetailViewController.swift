@@ -12,18 +12,13 @@ import CoreData
 
 class PDFDetailViewController: UIViewController {
     
-    var webView: WKWebView!
+    
+    @IBOutlet weak var webView: UIWebView!
+    
     var listLinesID: [String] = ELine.getListOfLinesNo()
     
     //initialize coredata
     var PDFList = [NSManagedObject]()
-    
-    //load WK
-    override func loadView() {
-        webView = WKWebView()
-        view = webView
-        
-    }
     
     //load stuff from PDFsSaved
     
@@ -117,7 +112,7 @@ class PDFDetailViewController: UIViewController {
         let items = try! fm.contentsOfDirectoryAtPath(path)
         print("items :")
         print(items)
-        let docURL = ((NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)).last as NSURL!)//.URLByAppendingPathComponent("PDFs/")
+        let docURL = ((NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)).last as NSURL!)
         print("docURL :")
         print(docURL)
         let searchPrefix = "L" + String(format: "%03d", Int(numberLine)!) + "_" + pLine
