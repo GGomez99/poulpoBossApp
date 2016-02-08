@@ -18,17 +18,27 @@ class PDFDetailViewController: UIViewController {
     override func loadView() {
         webView = WKWebView()
         view = webView
+        
     }
     
     //give PDF to WK to load it
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if let url = PDFDetail as NSURL! {
-            print("Loading URL")
-            webView.loadRequest(NSURLRequest(URL: url))
-        } else {
-            print("URL fucked up")
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0)) { [unowned self] in
+            var PDFLoaded = false
+            while PDFLoaded == false {
+                let pdfLinkReload = self.PDFDetail
+                
+                if let url = pdfLinkReload as NSURL! {
+                    print("Loading \(url)")
+                    self.webView.loadRequest(NSURLRequest(URL: url))
+                    PDFLoaded = true
+                } else {
+                    print("URL fucked up : \(pdfLinkReload)")
+                }
+                
+                sleep(3)
+            }
         }
     }
 

@@ -61,7 +61,7 @@ class JSONReader
     }
     
     //la liste de toutes les lignes
-    func getAllArret() -> [String]
+    static func getAllArret() -> [String]
     {
         var array: [String] = []
         
@@ -88,7 +88,7 @@ class JSONReader
     }
     
     //les lignes d'un arret
-    func getAllLine(arret: String) -> [Line]
+    static func getAllLine(arret: String) -> [Line]
     {
         var array: [Line] = []
         

@@ -145,7 +145,7 @@ class PDFTableVC: UITableViewController {
         let items = try! fm.contentsOfDirectoryAtPath(path)
         print("items :")
         print(items)
-        let docURL = ((NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)).last as NSURL!).URLByAppendingPathComponent("PDFs/")
+        let docURL = ((NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)).last as NSURL!)//.URLByAppendingPathComponent("PDFs/")
         print("docURL :")
         print(docURL)
         let searchPrefix = "L" + String(format: "%03d", Int(numberLine)!) + "_" + pLine
@@ -200,9 +200,9 @@ class PDFTableVC: UITableViewController {
                         self.savePDFsSaved(self.listLinesID[indexPath.row], keyBoolean: true)
                             
                         //Get the local PDF directory
-                        /*localPDFLink = self.getPDFLink(serverID, pLine: serverP)
+                        localPDFLink = self.getPDFLink(serverID, pLine: serverP)
                             
-                        let filePath = NSBundle.mainBundle().pathForResource("L001_PS_janv16", ofType:"pdf")
+                        /*let filePath = NSBundle.mainBundle().pathForResource("L001_PS_janv16", ofType:"pdf")
                         let data = NSData(contentsOfFile:filePath!)
                         print(filePath)
                         print(data)*/
