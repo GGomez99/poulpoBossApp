@@ -26,8 +26,10 @@ class PDFDetailViewController: UIViewController {
         super.viewDidLoad()
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0)) { [unowned self] in
             var PDFLoaded = false
+            var pdfLinkReload = self.PDFDetail
+            
             while PDFLoaded == false {
-                let pdfLinkReload = self.PDFDetail
+                pdfLinkReload = self.PDFDetail
                 
                 if let url = pdfLinkReload as NSURL! {
                     print("Loading \(url)")
