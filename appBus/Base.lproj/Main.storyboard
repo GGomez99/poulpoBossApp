@@ -44,35 +44,6 @@
             </objects>
             <point key="canvasLocation" x="665" y="1132"/>
         </scene>
-        <!--Root View Controller-->
-        <scene sceneID="QBx-Ji-Dk8">
-            <objects>
-                <tableViewController id="tnS-o9-bwo" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="61N-Hu-vfR">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="fnd-4Z-yWz">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fnd-4Z-yWz" id="7VS-zI-TVJ">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="tnS-o9-bwo" id="C98-pR-ebv"/>
-                            <outlet property="delegate" destination="tnS-o9-bwo" id="2UN-SO-t4L"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="8im-Tj-4R2"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bkM-jO-kuI" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2763" y="1132"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="MOa-eS-P8G">
             <objects>
@@ -87,7 +58,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yKY-pV-YHG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2104" y="1132"/>
+            <point key="canvasLocation" x="1368" y="384"/>
         </scene>
         <!--Arrets TableVC-->
         <scene sceneID="2H4-0j-bfP">
