@@ -12,6 +12,8 @@ class accueilVC: UIViewController {
     
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var menu: UIBarButtonItem!
+    @IBOutlet weak var arretsButtonTitle: UILabel!
+    @IBOutlet weak var linesButtonTitle: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +30,10 @@ class accueilVC: UIViewController {
         let navbarFont = UIFont(name: g.mainFont, size: 25) ?? UIFont.systemFontOfSize(25)
         
         navBar.titleTextAttributes = [NSFontAttributeName: navbarFont, NSForegroundColorAttributeName: UIColor(hue: 0.905, saturation: 0.88, brightness: 0.78, alpha: 1)]
+        
+        //définir la font des titles des buttons
+        arretsButtonTitle.font = UIFont(name: g.mainFont, size: 17)
+        linesButtonTitle.font = UIFont(name: g.mainFont, size: 17)
         
         //permet d'accéder au menu en swipant
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())

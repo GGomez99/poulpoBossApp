@@ -13,6 +13,7 @@ import CoreData
 class PDFDetailViewController: UIViewController {
 
     @IBOutlet weak var webView: UIWebView!
+    @IBOutlet weak var loadingIcon: UIActivityIndicatorView!
     
     var listLinesID: [String] = ELine.getListOfLinesNo()
     
@@ -104,9 +105,7 @@ class PDFDetailViewController: UIViewController {
     //check and get PDF local link
     
     func getPDFLink(numberLine: String, pLine: String) -> NSURL {
-        /*let fm = NSFileManager.defaultManager()
-        let path = NSBundle.mainBundle().resourcePath!
-        let items = try! fm.contentsOfDirectoryAtPath(path)*/
+
         var directoryContents = [NSURL]()
         
         let documentsUrl =  NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
@@ -119,11 +118,6 @@ class PDFDetailViewController: UIViewController {
             print(error.localizedDescription)
         }
         
-        /*print("items :")
-        print(items)
-        let docURL = ((NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)).last as NSURL!)
-        print("docURL :")
-        print(docURL)*/
         let searchPrefix = numberLine + "_" + pLine + ".pdf"
         print(searchPrefix)
         var finalURL = NSURL()
@@ -142,6 +136,9 @@ class PDFDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //set loading icon visible and webview invisible
+        webView.alpha = CGFloat(0)
+        loadingIcon.alpha = CGFloat(1)
         
         //set localPDFLink
         var localPDFLink = NSURL()
@@ -179,16 +176,20 @@ class PDFDetailViewController: UIViewController {
                     //Get the local PDF directory
                     localPDFLink = self.getPDFLink(serverID, pLine: serverP)
                 
-                    /*let filePath = NSBundle.mainBundle().pathForResource("L001_PS_janv16", ofType:"pdf")
-                    let data = NSData(contentsOfFile:filePath!)
-                    print(filePath)
-                    print(data)*/
                     print(NSURL(string: path))
                     
                     //load pdf
                     print(localPDFLink)
                     dispatch_async(dispatch_get_main_queue()) { [unowned self] in
+                        
+                        //set loading icon invisible
+                        self.loadingIcon.alpha = CGFloat(0)
+                        
+                        //load PDF on webview
                         self.webView.loadRequest(NSURLRequest(URL: localPDFLink))
+                        
+                        //set webview visible
+                        self.webView.alpha = CGFloat(1)
                     }
                 })
             }
@@ -199,7 +200,15 @@ class PDFDetailViewController: UIViewController {
             
             print(localPDFLink)
             dispatch_async(dispatch_get_main_queue()) { [unowned self] in
+                
+                //set loading icon invisible and webview visible
+                self.loadingIcon.alpha = CGFloat(0)
+                
+                //load PDF on webview
                 self.webView.loadRequest(NSURLRequest(URL: localPDFLink))
+                
+                //set webview visible
+                self.webView.alpha = CGFloat(1)
             }
         }
         
