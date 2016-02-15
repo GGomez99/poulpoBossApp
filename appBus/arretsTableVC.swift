@@ -11,6 +11,7 @@ import UIKit
 class arretsTableVC: UITableViewController {
 
     var listArretStr : [String] = IOAPI.getListOfArret()
+    internal static var indexPath: Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,5 +47,14 @@ class arretsTableVC: UITableViewController {
         cell.textLabel!.font = UIFont(name: g.mainFont, size: 25)
         
         return cell
+    }
+    //Use arret name to give the list of lines
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showDetail" {
+            if let indexPath = self.tableView.indexPathForSelectedRow {
+                arretsTableVC.indexPath = indexPath.row
+            }
+        }
     }
 }

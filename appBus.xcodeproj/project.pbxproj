@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		746489231C71F7A700F90D20 /* arretsTableVCcell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746489221C71F7A700F90D20 /* arretsTableVCcell.swift */; };
+		747F2A4F1C68F4F3009EE7BE /* arretDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747F2A4E1C68F4F3009EE7BE /* arretDetailViewController.swift */; };
 		A965AD351C370A7F004DF24F /* PDFTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A965AD341C370A7F004DF24F /* PDFTableVC.swift */; };
 		A965AD3B1C372F99004DF24F /* globalSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A965AD3A1C372F99004DF24F /* globalSettings.swift */; };
 		A965AD3D1C373B0E004DF24F /* PDFDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A965AD3C1C373B0E004DF24F /* PDFDetailViewController.swift */; };
@@ -32,6 +34,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		746489221C71F7A700F90D20 /* arretsTableVCcell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = arretsTableVCcell.swift; path = ../arretsTableVCcell.swift; sourceTree = "<group>"; };
+		747F2A4E1C68F4F3009EE7BE /* arretDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = arretDetailViewController.swift; sourceTree = "<group>"; };
 		A965AD341C370A7F004DF24F /* PDFTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFTableVC.swift; sourceTree = "<group>"; };
 		A965AD3A1C372F99004DF24F /* globalSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = globalSettings.swift; sourceTree = "<group>"; };
 		A965AD3C1C373B0E004DF24F /* PDFDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFDetailViewController.swift; sourceTree = "<group>"; };
@@ -71,6 +75,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		747F2A4D1C68F49D009EE7BE /* Arret List */ = {
+			isa = PBXGroup;
+			children = (
+				A9DF678C1C3191860071D001 /* arretsTableVC.swift */,
+				747F2A4E1C68F4F3009EE7BE /* arretDetailViewController.swift */,
+				746489221C71F7A700F90D20 /* arretsTableVCcell.swift */,
+			);
+			name = "Arret List";
+			sourceTree = "<group>";
+		};
 		A965AD391C371954004DF24F /* PDF List */ = {
 			isa = PBXGroup;
 			children = (
@@ -106,7 +120,7 @@
 				A9F623DA1C19E3790018BA32 /* accueilVC.swift */,
 				A9779D741C1C627400A40E13 /* arretsVC.swift */,
 				A965AD391C371954004DF24F /* PDF List */,
-				A9DF678C1C3191860071D001 /* arretsTableVC.swift */,
+				747F2A4D1C68F49D009EE7BE /* Arret List */,
 				A9F624331C1A03790018BA32 /* BackTableVC.swift */,
 				A9F623DC1C19E3790018BA32 /* Main.storyboard */,
 				A9F623DF1C19E3790018BA32 /* Assets.xcassets */,
@@ -224,11 +238,13 @@
 				A9BFFB781C31BD9A005AD814 /* AppDelegate.swift in Sources */,
 				A965AD351C370A7F004DF24F /* PDFTableVC.swift in Sources */,
 				A9BFFB791C31BD9A005AD814 /* accueilVC.swift in Sources */,
+				746489231C71F7A700F90D20 /* arretsTableVCcell.swift in Sources */,
 				E0EAED151C31E3CA00D80BFE /* NetReader.swift in Sources */,
 				A9E435941C5BF2FD009B60E9 /* PDFDownloader.swift in Sources */,
 				A9BFFB7A1C31BD9A005AD814 /* arretsVC.swift in Sources */,
 				A9BFFB7B1C31BD9A005AD814 /* arretsTableVC.swift in Sources */,
 				E0EAED171C31E3DB00D80BFE /* JSONReader.swift in Sources */,
+				747F2A4F1C68F4F3009EE7BE /* arretDetailViewController.swift in Sources */,
 				E0EAED111C31DD4000D80BFE /* IOAPI.swift in Sources */,
 				A9BFFB7C1C31BD9A005AD814 /* BackTableVC.swift in Sources */,
 				E03F8AFE1C3736EB0044BCDD /* enums.swift in Sources */,
