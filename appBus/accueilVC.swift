@@ -19,21 +19,21 @@ class accueilVC: UIViewController {
         super.viewDidLoad()
         
         //set style de tous les boutons par défaut
-        UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: g.mainFont, size: 20)!, NSForegroundColorAttributeName : g.mainColorFont], forState: UIControlState.Normal)
-        UINavigationBar.appearance().tintColor = g.mainColorFont
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: global.mainFont, size: 20)!, NSForegroundColorAttributeName : global.mainColorFont], forState: UIControlState.Normal)
+        UINavigationBar.appearance().tintColor = global.mainColorFont
         
         // set l'action du bouton menu
         menu.target = self.revealViewController()
         menu.action = Selector("revealToggle:")
         
         //définie le style du title
-        let navbarFont = UIFont(name: g.mainFont, size: 25) ?? UIFont.systemFontOfSize(25)
+        let navbarFont = UIFont(name: global.mainFont, size: 25) ?? UIFont.systemFontOfSize(25)
         
         navBar.titleTextAttributes = [NSFontAttributeName: navbarFont, NSForegroundColorAttributeName: UIColor(hue: 0.905, saturation: 0.88, brightness: 0.78, alpha: 1)]
         
         //définir la font des titles des buttons
-        arretsButtonTitle.font = UIFont(name: g.mainFont, size: 17)
-        linesButtonTitle.font = UIFont(name: g.mainFont, size: 17)
+        arretsButtonTitle.font = UIFont(name: global.mainFont, size: 17)
+        linesButtonTitle.font = UIFont(name: global.mainFont, size: 17)
         
         //permet d'accéder au menu en swipant
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())

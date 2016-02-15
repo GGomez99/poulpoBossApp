@@ -31,7 +31,7 @@ class backTableVC: UITableViewController {
         cell.textLabel?.text = TableArray[indexPath.row]
         
         //set font de chaque cell
-        cell.textLabel?.font = UIFont(name: g.mainFont, size: 25)
+        cell.textLabel?.font = UIFont(name: global.mainFont, size: 25)
         cell.textLabel?.textColor = UIColor(red: 242/255, green: 217/255, blue: 237/255, alpha: 1)
         cell.backgroundColor = menuBGColor
         
