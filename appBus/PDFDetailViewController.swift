@@ -278,7 +278,9 @@ class PDFDetailViewController: UIViewController {
             } catch let error as NSError {
                 print("error while deleting: \(error)")
             }
-            print(localPDFLink)
+            
+            //set undownloaded
+            savePDFsSaved(listLinesID[PDFTableVC.indexPath], keyBoolean: false)
             
             //download PDF
             let URL = NSURL(string: "http://envibus.kyrandia.org/" + serverID + "_" + serverP + ".pdf")
