@@ -15,7 +15,6 @@
 		A9779D851C1C7F5A00A40E13 /* CenturyGothic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9779D831C1C7D3000A40E13 /* CenturyGothic.ttf */; };
 		A9BFFB781C31BD9A005AD814 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F623D81C19E3790018BA32 /* AppDelegate.swift */; };
 		A9BFFB791C31BD9A005AD814 /* accueilVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F623DA1C19E3790018BA32 /* accueilVC.swift */; };
-		A9BFFB7A1C31BD9A005AD814 /* arretsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9779D741C1C627400A40E13 /* arretsVC.swift */; };
 		A9BFFB7B1C31BD9A005AD814 /* arretsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DF678C1C3191860071D001 /* arretsTableVC.swift */; };
 		A9BFFB7C1C31BD9A005AD814 /* BackTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F624331C1A03790018BA32 /* BackTableVC.swift */; };
 		A9BFFB891C31C2A6005AD814 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9BFFB881C31C2A6005AD814 /* SWRevealViewController.m */; };
@@ -39,7 +38,6 @@
 		A965AD341C370A7F004DF24F /* PDFTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFTableVC.swift; sourceTree = "<group>"; };
 		A965AD3A1C372F99004DF24F /* globalSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = globalSettings.swift; sourceTree = "<group>"; };
 		A965AD3C1C373B0E004DF24F /* PDFDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFDetailViewController.swift; sourceTree = "<group>"; };
-		A9779D741C1C627400A40E13 /* arretsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = arretsVC.swift; sourceTree = "<group>"; };
 		A9779D831C1C7D3000A40E13 /* CenturyGothic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = CenturyGothic.ttf; sourceTree = "<group>"; };
 		A9BFFB861C31C2A5005AD814 /* appBus-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "appBus-Bridging-Header.h"; sourceTree = "<group>"; };
 		A9BFFB871C31C2A6005AD814 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
@@ -118,7 +116,6 @@
 				A9F623D81C19E3790018BA32 /* AppDelegate.swift */,
 				A965AD3A1C372F99004DF24F /* globalSettings.swift */,
 				A9F623DA1C19E3790018BA32 /* accueilVC.swift */,
-				A9779D741C1C627400A40E13 /* arretsVC.swift */,
 				A965AD391C371954004DF24F /* PDF List */,
 				747F2A4D1C68F49D009EE7BE /* Arret List */,
 				A9F624331C1A03790018BA32 /* BackTableVC.swift */,
@@ -189,7 +186,7 @@
 				TargetAttributes = {
 					A9F623D41C19E3790018BA32 = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = A7PUE57NF4;
+						DevelopmentTeam = QCQCJH73F3;
 					};
 				};
 			};
@@ -241,7 +238,6 @@
 				746489231C71F7A700F90D20 /* arretsTableVCcell.swift in Sources */,
 				E0EAED151C31E3CA00D80BFE /* NetReader.swift in Sources */,
 				A9E435941C5BF2FD009B60E9 /* PDFDownloader.swift in Sources */,
-				A9BFFB7A1C31BD9A005AD814 /* arretsVC.swift in Sources */,
 				A9BFFB7B1C31BD9A005AD814 /* arretsTableVC.swift in Sources */,
 				E0EAED171C31E3DB00D80BFE /* JSONReader.swift in Sources */,
 				747F2A4F1C68F4F3009EE7BE /* arretDetailViewController.swift in Sources */,
@@ -311,7 +307,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -350,7 +346,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -367,9 +363,9 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "$(SRCROOT)/appBus/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ClemCo.appBus;
+				PRODUCT_BUNDLE_IDENTIFIER = com.SparxCo.appBus;
 				PRODUCT_NAME = appBus;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "appBus/appBus-Bridging-Header.h";
@@ -386,9 +382,9 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "$(SRCROOT)/appBus/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ClemCo.appBus;
+				PRODUCT_BUNDLE_IDENTIFIER = com.SparxCo.appBus;
 				PRODUCT_NAME = appBus;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "appBus/appBus-Bridging-Header.h";

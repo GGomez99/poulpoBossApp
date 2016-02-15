@@ -11,9 +11,9 @@ import WebKit
 import CoreData
 
 class PDFDetailViewController: UIViewController {
-    
-    
+
     @IBOutlet weak var webView: UIWebView!
+    @IBOutlet weak var loadingIcon: UIActivityIndicatorView!
     
     var listLinesID: [String] = ELine.getListOfLinesNo()
     
@@ -61,7 +61,6 @@ class PDFDetailViewController: UIViewController {
                 print("Could not save and reload \(error), \(error.userInfo)")
             }
             
-            print(PDFList)
         }
         
         let PDFSKey = "Line" + PDFSID
@@ -72,7 +71,6 @@ class PDFDetailViewController: UIViewController {
                 finalBool = PDFListObjectBool
             }
         }
-        print(PDFList)
         return finalBool
     }
     
@@ -107,21 +105,28 @@ class PDFDetailViewController: UIViewController {
     //check and get PDF local link
     
     func getPDFLink(numberLine: String, pLine: String) -> NSURL {
-        let fm = NSFileManager.defaultManager()
-        let path = NSBundle.mainBundle().resourcePath!
-        let items = try! fm.contentsOfDirectoryAtPath(path)
-        print("items :")
-        print(items)
-        let docURL = ((NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)).last as NSURL!)
-        print("docURL :")
-        print(docURL)
-        let searchPrefix = "L" + String(format: "%03d", Int(numberLine)!) + "_" + pLine
+
+        var directoryContents = [NSURL]()
+        
+        let documentsUrl =  NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
+        print(documentsUrl)
+        do {
+            directoryContents = try NSFileManager.defaultManager().contentsOfDirectoryAtURL(documentsUrl, includingPropertiesForKeys: nil, options: NSDirectoryEnumerationOptions())
+            print(directoryContents)
+            
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+        
+        let searchPrefix = numberLine + "_" + pLine + ".pdf"
         print(searchPrefix)
         var finalURL = NSURL()
         
-        for item in items {
-            if item.hasPrefix(searchPrefix) {
-                finalURL = NSURL(fileURLWithPath: item, relativeToURL: docURL)
+        for url in directoryContents {
+            let urlString = "\(url)"
+            print(urlString)
+            if (urlString.rangeOfString(searchPrefix) != nil) {
+                finalURL = url
             }
         }
         return finalURL
@@ -131,6 +136,9 @@ class PDFDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //set loading icon visible and webview invisible
+        webView.alpha = CGFloat(0)
+        loadingIcon.alpha = CGFloat(1)
         
         //set localPDFLink
         var localPDFLink = NSURL()
@@ -146,40 +154,42 @@ class PDFDetailViewController: UIViewController {
             serverP = "nuit"
             serverID = listLinesID[PDFTableVC.indexPath].stringByReplacingOccurrencesOfString("nuit", withString: "")
         } else {
+            serverP = "PS"
             serverID = listLinesID[PDFTableVC.indexPath]
         }
         
         
         //check if line was already saved
         let isLineSaved = readPDFsSaved(listLinesID[PDFTableVC.indexPath])
-        print(isLineSaved)
+        
         if isLineSaved == false {
             
             //get pdf link
-            //let URL = NSURL(string: "http://envibus.kyrandia.org/PDFs/?id=" + serverID + "&p=" + serverP)
-            let URL = NSURL(string: "http://envibus.kyrandia.org/PDFs/L001_PS_janv16.pdf")
+            let URL = NSURL(string: "http://envibus.kyrandia.org/" + serverID + "_" + serverP + ".pdf")
             print("url is \(URL)")
             
             dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0)) { [unowned self] in
-                HttpDownloader.loadFileSync(URL!, completion: {(path: String, error: NSError!) in
+                HttpDownloader.loadFileAsync(URL!, completion: {(path: String, error: NSError!) in
                 
-                    print("pdf downloaded in \(path)")
                     self.savePDFsSaved(self.listLinesID[PDFTableVC.indexPath], keyBoolean: true)
                 
                     //Get the local PDF directory
                     localPDFLink = self.getPDFLink(serverID, pLine: serverP)
                 
-                    /*let filePath = NSBundle.mainBundle().pathForResource("L001_PS_janv16", ofType:"pdf")
-                    let data = NSData(contentsOfFile:filePath!)
-                    print(filePath)
-                    print(data)*/
                     print(NSURL(string: path))
                     
                     //load pdf
-                    let finalRequest = NSURLRequest(URL: NSURL(string: path)!)
-                    print(finalRequest)
+                    print(localPDFLink)
                     dispatch_async(dispatch_get_main_queue()) { [unowned self] in
-                        self.webView.loadRequest(finalRequest)
+                        
+                        //set loading icon invisible
+                        self.loadingIcon.alpha = CGFloat(0)
+                        
+                        //load PDF on webview
+                        self.webView.loadRequest(NSURLRequest(URL: localPDFLink))
+                        
+                        //set webview visible
+                        self.webView.alpha = CGFloat(1)
                     }
                 })
             }
@@ -190,7 +200,15 @@ class PDFDetailViewController: UIViewController {
             
             print(localPDFLink)
             dispatch_async(dispatch_get_main_queue()) { [unowned self] in
+                
+                //set loading icon invisible and webview visible
+                self.loadingIcon.alpha = CGFloat(0)
+                
+                //load PDF on webview
                 self.webView.loadRequest(NSURLRequest(URL: localPDFLink))
+                
+                //set webview visible
+                self.webView.alpha = CGFloat(1)
             }
         }
         

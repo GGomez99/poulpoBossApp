@@ -9,7 +9,6 @@
 import Foundation
 
 struct global {
-    var mainFont: String = "Century Gothic"
-    var mainColorFont: UIColor = UIColor(red: 198/255, green: 23/255, blue: 124/255, alpha: 1)
+    static var mainFont: String = "Century Gothic"
+    static var mainColorFont: UIColor = UIColor(red: 198/255, green: 23/255, blue: 124/255, alpha: 1)
 }
-var g = global()
