@@ -109,22 +109,19 @@ class PDFDetailViewController: UIViewController {
         var directoryContents = [NSURL]()
         
         let documentsUrl =  NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
-        print(documentsUrl)
         do {
             directoryContents = try NSFileManager.defaultManager().contentsOfDirectoryAtURL(documentsUrl, includingPropertiesForKeys: nil, options: NSDirectoryEnumerationOptions())
-            print(directoryContents)
             
         } catch let error as NSError {
             print(error.localizedDescription)
         }
         
-        let searchPrefix = numberLine + "_" + pLine + ".pdf"
+        let searchPrefix = "/" + numberLine + "_" + pLine + ".pdf"
         print(searchPrefix)
         var finalURL = NSURL()
         
         for url in directoryContents {
             let urlString = "\(url)"
-            print(urlString)
             if (urlString.rangeOfString(searchPrefix) != nil) {
                 finalURL = url
             }
@@ -132,10 +129,9 @@ class PDFDetailViewController: UIViewController {
         return finalURL
     }
     
-    //give PDF to WK to load it
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    //load PDF in WebView
+    
+    func loadPDF() {
         //set loading icon visible and webview invisible
         webView.alpha = CGFloat(0)
         loadingIcon.alpha = CGFloat(1)
@@ -170,12 +166,12 @@ class PDFDetailViewController: UIViewController {
             
             dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0)) { [unowned self] in
                 HttpDownloader.loadFileAsync(URL!, completion: {(path: String, error: NSError!) in
-                
+                    
                     self.savePDFsSaved(self.listLinesID[PDFTableVC.indexPath], keyBoolean: true)
-                
+                    
                     //Get the local PDF directory
                     localPDFLink = self.getPDFLink(serverID, pLine: serverP)
-                
+                    
                     print(NSURL(string: path))
                     
                     //load pdf
@@ -211,7 +207,124 @@ class PDFDetailViewController: UIViewController {
                 self.webView.alpha = CGFloat(1)
             }
         }
+    }
+    
+    func reloadPDF() {
         
+        //set loading icon visible and webview invisible
+        webView.alpha = CGFloat(0)
+        loadingIcon.alpha = CGFloat(1)
+        
+        //set localPDFLink
+        var localPDFLink = NSURL()
+        
+        //set parameters for the link
+        var serverP = ""
+        var serverID = ""
+        
+        if (listLinesID[PDFTableVC.indexPath].rangeOfString("vac") != nil) {
+            serverP = "vac"
+            serverID = listLinesID[PDFTableVC.indexPath].stringByReplacingOccurrencesOfString("vac", withString: "")
+        } else if (listLinesID[PDFTableVC.indexPath].rangeOfString("nuit") != nil) {
+            serverP = "nuit"
+            serverID = listLinesID[PDFTableVC.indexPath].stringByReplacingOccurrencesOfString("nuit", withString: "")
+        } else {
+            serverP = "PS"
+            serverID = listLinesID[PDFTableVC.indexPath]
+        }
+        
+        //check if line was already saved
+        let isLineSaved = readPDFsSaved(listLinesID[PDFTableVC.indexPath])
+        
+        if isLineSaved == false {
+            
+            //get pdf link
+            let URL = NSURL(string: "http://envibus.kyrandia.org/" + serverID + "_" + serverP + ".pdf")
+            print("url is \(URL)")
+            
+            dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0)) { [unowned self] in
+                HttpDownloader.loadFileAsync(URL!, completion: {(path: String, error: NSError!) in
+                    
+                    self.savePDFsSaved(self.listLinesID[PDFTableVC.indexPath], keyBoolean: true)
+                    
+                    //Get the local PDF directory
+                    localPDFLink = self.getPDFLink(serverID, pLine: serverP)
+                    
+                    print(NSURL(string: path))
+                    
+                    //load pdf
+                    print(localPDFLink)
+                    dispatch_async(dispatch_get_main_queue()) { [unowned self] in
+                        
+                        //set loading icon invisible
+                        self.loadingIcon.alpha = CGFloat(0)
+                        
+                        //load PDF on webview
+                        self.webView.loadRequest(NSURLRequest(URL: localPDFLink))
+                        
+                        //set webview visible
+                        self.webView.alpha = CGFloat(1)
+                    }
+                })
+            }
+            //if isLineSaved == true
+        } else {
+            //Get the local PDF directory
+            localPDFLink = self.getPDFLink(serverID, pLine: serverP)
+            
+            //delete PDF
+            do {
+                try NSFileManager.defaultManager().removeItemAtPath("\(localPDFLink)".stringByReplacingOccurrencesOfString("file:///private", withString: ""))
+            } catch let error as NSError {
+                print("error while deleting: \(error)")
+            }
+            
+            //set undownloaded
+            savePDFsSaved(listLinesID[PDFTableVC.indexPath], keyBoolean: false)
+            
+            //download PDF
+            let URL = NSURL(string: "http://envibus.kyrandia.org/" + serverID + "_" + serverP + ".pdf")
+            print("url is \(URL)")
+            
+            dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0)) { [unowned self] in
+                HttpDownloader.loadFileAsync(URL!, completion: {(path: String, error: NSError!) in
+                    
+                    self.savePDFsSaved(self.listLinesID[PDFTableVC.indexPath], keyBoolean: true)
+                    
+                    //Get the local PDF directory
+                    localPDFLink = self.getPDFLink(serverID, pLine: serverP)
+                    
+                    print(NSURL(string: path))
+                    
+                    //load pdf
+                    print(localPDFLink)
+                    dispatch_async(dispatch_get_main_queue()) { [unowned self] in
+                        
+                        //set loading icon invisible
+                        self.loadingIcon.alpha = CGFloat(0)
+                        
+                        //load PDF on webview
+                        self.webView.loadRequest(NSURLRequest(URL: localPDFLink))
+                        
+                        //set webview visible
+                        self.webView.alpha = CGFloat(1)
+                    }
+                })
+            }
+        }
+
+    }
+    
+    //refresh PDF when button activated
+    
+    @IBAction func Refresh(sender: AnyObject) {
+        reloadPDF()
+    }
+    
+    //give PDF to WK to load it
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        loadPDF()
     }
 
 }
