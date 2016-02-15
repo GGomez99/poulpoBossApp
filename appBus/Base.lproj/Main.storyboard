@@ -120,7 +120,13 @@
                             <constraint firstItem="iFG-VH-68i" firstAttribute="leading" secondItem="Vpe-jO-743" secondAttribute="leading" id="wpF-pc-x8o"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="gME-sy-c1i"/>
+                    <navigationItem key="navigationItem" id="gME-sy-c1i">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="fV0-vE-2aC">
+                            <connections>
+                                <action selector="Refresh:" destination="JyX-Gt-Ze9" id="1vM-xD-KTf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="loadingIcon" destination="wVO-r2-rkD" id="dbH-Ak-Nyv"/>
                         <outlet property="webView" destination="iFG-VH-68i" id="wg4-q5-UYZ"/>
