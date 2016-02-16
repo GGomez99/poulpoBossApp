@@ -9,6 +9,21 @@
 import UIKit
 
 class arretsTableVC: UITableViewController {
+    
+    class arret: NSObject {
+        let arretsList: String
+        var section: Int?
+        init(arretsList: String) {
+            self.arretsList = arretsList
+        }
+    }
+    class Section {
+        var arrets: [arret] = []
+        
+        func addArret(Arret: arret) {
+            self.arrets.append(Arret)
+        }
+    }
 
     var listArretStr : [String] = IOAPI.getListOfArret()
     internal static var indexPath: Int!
@@ -33,12 +48,12 @@ class arretsTableVC: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    //number of cells
+    /*number of cells
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return listArretStr.count
     }
-    
+
     //edit cells
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("arretCell", forIndexPath: indexPath)
@@ -47,7 +62,8 @@ class arretsTableVC: UITableViewController {
         cell.textLabel!.font = UIFont(name: global.mainFont, size: 25)
         
         return cell
-    }
+    } */
+
     //Use arret name to give the list of lines
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -56,5 +72,92 @@ class arretsTableVC: UITableViewController {
                 arretsTableVC.indexPath = indexPath.row
             }
         }
+    }
+    // `UIKit` convenience class for sectioning a table
+    let collation = UILocalizedIndexedCollation.currentCollation()
+        as UILocalizedIndexedCollation
+    
+    // table sections
+    var sections: [Section] {
+        // return if already initialized
+        if self._sections != nil {
+            return self._sections!
+        }
+        
+        let arrets: [arret] = listArretStr.map { arretsList in
+            let Arret = arret(arretsList: arretsList)
+            Arret.section = self.collation.sectionForObject(Arret, collationStringSelector: "arretsList")
+            return Arret
+        }
+        
+        // create empty sections
+        var sections = [Section]()
+        for _ in 0..<self.collation.sectionIndexTitles.count {
+            sections.append(Section())
+        }
+        
+        // put each user in a section
+        for Arret in arrets {
+            sections[Arret.section!].addArret(Arret)
+        }
+        
+        // sort each section
+        for section in sections {
+            section.arrets = self.collation.sortedArrayFromArray(section.arrets, collationStringSelector: "arretsList") as! [arret]
+        }
+        
+        self._sections = sections
+        
+        return self._sections!
+        
+    }
+    var _sections: [Section]?
+    
+    // table view data source
+    
+    override func numberOfSectionsInTableView(tableView: UITableView)
+        -> Int {
+            return self.sections.count
+    }
+    
+    override func tableView(tableView: UITableView,
+        numberOfRowsInSection section: Int)
+        -> Int {
+            return self.sections[section].arrets.count
+    }
+    
+    override func tableView(tableView: UITableView,
+        cellForRowAtIndexPath indexPath: NSIndexPath)
+        -> UITableViewCell {
+            let Arret = self.sections[indexPath.section].arrets[indexPath.row]
+            
+            let cell = tableView.dequeueReusableCellWithIdentifier("arretCell", forIndexPath: indexPath) as UITableViewCell
+            cell.textLabel!.text = Arret.arretsList
+            return cell
+    }
+    
+    /* section headers
+    appear above each `UITableView` section */
+    override func tableView(tableView: UITableView,
+        titleForHeaderInSection section: Int)
+        -> String {
+            // do not display empty `Section`s
+            if !self.sections[section].arrets.isEmpty {
+                return self.collation.sectionTitles[section] as String
+            }
+            return ""
+    }
+    
+    /* section index titles
+    displayed to the right of the `UITableView`*/
+    override func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
+            return self.collation.sectionIndexTitles
+    }
+    
+    override func tableView(tableView: UITableView,
+        sectionForSectionIndexTitle title: String,
+        atIndex index: Int)
+        -> Int {
+            return self.collation.sectionForSectionIndexTitleAtIndex(index)
     }
 }
