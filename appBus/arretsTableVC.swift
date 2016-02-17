@@ -48,23 +48,7 @@ class arretsTableVC: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    /*number of cells
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return listArretStr.count
-    }
-
-    //edit cells
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("arretCell", forIndexPath: indexPath)
-        
-        cell.textLabel!.text = "\(listArretStr[indexPath.row])"
-        cell.textLabel!.font = UIFont(name: global.mainFont, size: 25)
-        
-        return cell
-    } */
-
-    //Use arret name to give the list of lines
+        //Use arret name to give the list of lines
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetail" {
@@ -96,7 +80,7 @@ class arretsTableVC: UITableViewController {
             sections.append(Section())
         }
         
-        // put each user in a section
+        // put each Arret in a section
         for Arret in arrets {
             sections[Arret.section!].addArret(Arret)
         }
