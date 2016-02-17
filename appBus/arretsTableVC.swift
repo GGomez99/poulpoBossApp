@@ -9,8 +9,24 @@
 import UIKit
 
 class arretsTableVC: UITableViewController {
+    
+    class arret: NSObject {
+        let arretsList: String
+        var section: Int?
+        init(arretsList: String) {
+            self.arretsList = arretsList
+        }
+    }
+    class Section {
+        var arrets: [arret] = []
+        
+        func addArret(Arret: arret) {
+            self.arrets.append(Arret)
+        }
+    }
 
     var listArretStr : [String] = IOAPI.getListOfArret()
+    internal static var indexPath: Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,76 +48,100 @@ class arretsTableVC: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    //number of cells
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return listArretStr.count
+        //Use arret name to give the list of lines
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showDetail" {
+            if let indexPath = self.tableView.indexPathForSelectedRow {
+                arretsTableVC.indexPath = indexPath.row
+            }
+        }
+    }
+    // `UIKit` convenience class for sectioning a table
+    let collation = UILocalizedIndexedCollation.currentCollation()
+        as UILocalizedIndexedCollation
+    
+    // table sections
+    var sections: [Section] {
+        // return if already initialized
+        if self._sections != nil {
+            return self._sections!
+        }
+        
+        let arrets: [arret] = listArretStr.map { arretsList in
+            let Arret = arret(arretsList: arretsList)
+            Arret.section = self.collation.sectionForObject(Arret, collationStringSelector: "arretsList")
+            return Arret
+        }
+        
+        // create empty sections
+        var sections = [Section]()
+        for _ in 0..<self.collation.sectionIndexTitles.count {
+            sections.append(Section())
+        }
+        
+        // put each Arret in a section
+        for Arret in arrets {
+            sections[Arret.section!].addArret(Arret)
+        }
+        
+        // sort each section
+        for section in sections {
+            section.arrets = self.collation.sortedArrayFromArray(section.arrets, collationStringSelector: "arretsList") as! [arret]
+        }
+        
+        self._sections = sections
+        
+        return self._sections!
+        
+    }
+    var _sections: [Section]?
+    
+    // table view data source
+    
+    override func numberOfSectionsInTableView(tableView: UITableView)
+        -> Int {
+            return self.sections.count
     }
     
-    //edit cells
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("lineCell", forIndexPath: indexPath)
-        
-        cell.textLabel!.text = "\(listArretStr[indexPath.row])"
-        cell.textLabel!.font = UIFont(name: global.mainFont, size: 25)
-        
-        return cell
+    override func tableView(tableView: UITableView,
+        numberOfRowsInSection section: Int)
+        -> Int {
+            return self.sections[section].arrets.count
     }
-
-
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
-        return cell
+    
+    override func tableView(tableView: UITableView,
+        cellForRowAtIndexPath indexPath: NSIndexPath)
+        -> UITableViewCell {
+            let Arret = self.sections[indexPath.section].arrets[indexPath.row]
+            
+            let cell = tableView.dequeueReusableCellWithIdentifier("arretCell", forIndexPath: indexPath) as UITableViewCell
+            cell.textLabel!.text = Arret.arretsList
+            return cell
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    /* section headers
+    appear above each `UITableView` section */
+    override func tableView(tableView: UITableView,
+        titleForHeaderInSection section: Int)
+        -> String {
+            // do not display empty `Section`s
+            if !self.sections[section].arrets.isEmpty {
+                return self.collation.sectionTitles[section] as String
+            }
+            return ""
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    /* section index titles
+    displayed to the right of the `UITableView`*/
+    override func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
+            return self.collation.sectionIndexTitles
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
+    
+    override func tableView(tableView: UITableView,
+        sectionForSectionIndexTitle title: String,
+        atIndex index: Int)
+        -> Int {
+            return self.collation.sectionForSectionIndexTitleAtIndex(index)
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
