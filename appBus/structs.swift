@@ -11,23 +11,23 @@ import Foundation
 struct Line
 {
     let name: ELine
-    let via: String
     let direction: String
 }
 
 struct Horaire
 {
-    let line: Line
-    let state: hState
-    let time0: String?
-    let time1: String?
+    let line: ELine
+    let direction: String
+    let via: String
+    let time0: String
+    var time1: String
     
 }
 
 struct Arret
 {
     let name: String
-    let horaires: [Horaire]
+    var horaires: [Horaire]
 }
 
 enum hState
