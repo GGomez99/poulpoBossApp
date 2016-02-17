@@ -17,12 +17,12 @@ class IOAPI
         netReader.test()
     }
     
-    static func getTime(arret: String, direction: String) -> Arret
+    static func getTime(arret: String) -> Arret
     {
         return Arret(name: "arret", horaires: [])
     }
     
-    static func getTime(arret: String, direction: String, line: String) -> Arret
+    static func getTime(arret: String, line: Line) -> Arret
     {
         return Arret(name: "arret", horaires: [])
     }

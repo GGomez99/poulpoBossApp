@@ -11,6 +11,7 @@ import Foundation
 struct Line
 {
     let name: ELine
+    let via: String
     let direction: String
 }
 
@@ -18,7 +19,8 @@ struct Horaire
 {
     let line: Line
     let state: hState
-    let time: String?
+    let time0: String?
+    let time1: String?
     
 }
 
