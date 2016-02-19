@@ -26,7 +26,7 @@ class arretsTableVC: UITableViewController {
     }
 
     var listArretStr : [String] = IOAPI.getListOfArret()
-    internal static var indexPath: Int!
+    internal static var indexPath: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()

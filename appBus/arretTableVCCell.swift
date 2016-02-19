@@ -13,6 +13,8 @@ class arretTableVCCell: UITableViewCell {
     
     
     //MARK: properties
+    @IBOutlet weak var DirectionLabel: UILabel!
+    
     @IBOutlet weak var lineImage: UIImageView!
     
     @IBOutlet weak var lineNumber: UILabel!
@@ -22,6 +24,7 @@ class arretTableVCCell: UITableViewCell {
     @IBOutlet weak var passage1label: UILabel!
     
     @IBOutlet weak var passage2label: UILabel!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

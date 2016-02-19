@@ -15,13 +15,22 @@ class arretDetailViewController: UITableViewController {
     var arretNumber = arretsTableVC.indexPath
     var numberOfCells = 0
     var horaireArret: Arret = Arret(name: "",horaires:[])
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
           dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0)) { [unowned self] in
-            self.horaireArret = IOAPI.getTime(listOfArret[arretNumber])
+            
+        //Défninir le nombre de cells
+            self.horaireArret = IOAPI.getTime(self.listOfArret[arretsTableVC.indexPath])
+            self.numberOfCells = self.horaireArret.horaires.count
+        }
+        
+        //Refresh the TableView
+        dispatch_async(dispatch_get_main_queue()) { [unowned self] in
+            self.refreshControl
         }
     }
+    
         //Number of cells
    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
@@ -30,11 +39,23 @@ class arretDetailViewController: UITableViewController {
         // Configure the cell...
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("LineCell", forIndexPath: indexPath)
-
-
+        let cellIdentifier = "arretTableVCCell"
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! arretTableVCCell
+        
+        cell.lineNumber.text = ELine.listOflineNo[horaireArret.horaires[indexPath.row].line]
+        cell.lineNumber.font = UIFont(name: global.mainFont, size: 12)
+        
+        cell.viaLabel.text = horaireArret.horaires[indexPath.row].via
+        
+        cell.passage1label.text = horaireArret.horaires[indexPath.row].time0
+        
+        cell.passage2label.text = horaireArret.horaires[indexPath.row].time1
+        
+        cell.DirectionLabel.text = horaireArret.horaires[indexPath.row].direction
+        
         return cell
-}
+    
+    }
     
     
     /*

@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		74778D231C7333F500A8C86B /* arretTableVCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74778D221C7333F500A8C86B /* arretTableVCCell.swift */; };
 		747F2A4F1C68F4F3009EE7BE /* arretDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747F2A4E1C68F4F3009EE7BE /* arretDetailViewController.swift */; };
+		74EAC8911C775EE300C3B333 /* arretTableVCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74778D221C7333F500A8C86B /* arretTableVCCell.swift */; };
 		A965AD351C370A7F004DF24F /* PDFTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A965AD341C370A7F004DF24F /* PDFTableVC.swift */; };
 		A965AD3B1C372F99004DF24F /* globalSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A965AD3A1C372F99004DF24F /* globalSettings.swift */; };
 		A965AD3D1C373B0E004DF24F /* PDFDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A965AD3C1C373B0E004DF24F /* PDFDetailViewController.swift */; };
@@ -249,6 +249,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74EAC8911C775EE300C3B333 /* arretTableVCCell.swift in Sources */,
 				E0EAED131C31DF3900D80BFE /* structs.swift in Sources */,
 				A965AD3B1C372F99004DF24F /* globalSettings.swift in Sources */,
 				A9E435921C5BBBB8009B60E9 /* CoreData.xcdatamodeld in Sources */,
