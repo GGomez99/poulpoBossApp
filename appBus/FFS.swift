@@ -10,11 +10,11 @@ import Foundation
 
 public class FFS : FFSObject
 {
-    ///vars
+    //vars
     private var m_error: Error;
     private var m_fileContent: [CChar];
     
-    ///constructeur
+    //constructeur
     public init(file: String)
     {
         m_error = Error();
@@ -25,7 +25,7 @@ public class FFS : FFSObject
     }
     
     
-    ///load
+    //load
     public func load(file: String)
     {
         m_error.set(true, error: "");
@@ -49,7 +49,7 @@ public class FFS : FFSObject
         }
     }
     
-    ///sauvegarde
+    //sauvegarde
     public func clear()
     {
         m_fileContent = [];
@@ -78,12 +78,12 @@ public class FFS : FFSObject
         return new Error();
     }*/
     
-    ///recup de l'erreur
+    //recup de l'erreur
     public func getError() -> Error
     {
         return m_error;
     }
-    ///recup
+    //recup
     public func getFileContent() -> String
     {
         return String(m_fileContent);
@@ -104,7 +104,7 @@ public class FFS : FFSObject
         return result;
     }
     
-    ///gestion macro et verif
+    //gestion macro et verif
     private func precompiler()
     {
         //on verif la premiere ligne
