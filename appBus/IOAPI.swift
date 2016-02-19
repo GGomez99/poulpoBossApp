@@ -17,18 +17,14 @@ class IOAPI
         netReader.test()
     }*/
     
-    static func getTime(arret: String, completion: () -> ()) -> Arret
+    static func getTime(arret: String) -> Arret
     {
-        let a = netReader.getTime(arret)
-        completion()
-        return a
+        return netReader.getTime(arret)
     }
     
-    static func getTime(arret: String, lines: [Line], completion: () -> ()) -> Arret
+    static func getTime(arret: String, lines: [Line]) -> Arret
     {
-        let a = netReader.getTime(arret, lignes: lines)
-        completion()
-        return a
+        return netReader.getTime(arret, lignes: lines)
     }
     
     
