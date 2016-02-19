@@ -86,7 +86,7 @@ public class FFS : FFSObject
     //recup
     public func getFileContent() -> String
     {
-        return String(m_fileContent);
+        return String(CString: m_fileContent, encoding: NSASCIIStringEncoding)!;
     }
     
     private func substr(tab: [CChar], start: Int, end: Int) -> [CChar]
@@ -111,7 +111,7 @@ public class FFS : FFSObject
         if(m_fileContent[0] == "#".cStringUsingEncoding(NSASCIIStringEncoding)![0])
         {
             //si c'est bien ffs
-            if(IOCore.staticReadWord(String(m_fileContent), i: 1, separator: ";".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false) != "ffs")
+            if(IOCore.staticReadWord(String(CString: m_fileContent, encoding: NSASCIIStringEncoding)!, i: 1, separator: ";".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false) != "ffs")
             {//non
                 m_error.set(false, error: "[ERROR] [FFS] file no well formated");
             }
@@ -137,10 +137,10 @@ public class FFS : FFSObject
             if(m_fileContent[i] == "#".cStringUsingEncoding(NSASCIIStringEncoding)![0])
             { //je suis sur un #
                 //si c'est une macro
-                if(IOCore.staticReadWord(String(m_fileContent), i: i+1, separator: " ".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false) == "macro")
+                if(IOCore.staticReadWord(String(CString: m_fileContent, encoding: NSASCIIStringEncoding)!, i: i+1, separator: " ".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false) == "macro")
                 {
                     var j: Int = i+1;
-                    var txtCommand: String = IOCore.readWord(String(m_fileContent), i: &j, separator: ";".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false);
+                    var txtCommand: String = IOCore.readWord(String(CString: m_fileContent, encoding: NSASCIIStringEncoding)!, i: &j, separator: ";".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false);
                     loadMacro(txtCommand);
                     m_fileContent = substr(m_fileContent, start: 0, end: i) + substr(m_fileContent, start: j+1, end: m_fileContent.count);
                     i--;
@@ -158,12 +158,12 @@ public class FFS : FFSObject
             {// on est sur un #
                 //on recup la command
                 i++;
-                var name: String = IOCore.staticReadWord(String(file), i: i, separator: " ".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false);
+                var name: String = IOCore.staticReadWord(String(CString: file, encoding: NSASCIIStringEncoding)!, i: i, separator: " ".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false);
                 
                 if(name == "def")
                 {
                     //recup command
-                    var command: String = IOCore.readWord(String(file), i: &i, separator: "{".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false);
+                    var command: String = IOCore.readWord(String(CString: file, encoding: NSASCIIStringEncoding)!, i: &i, separator: "{".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false);
                     i++;
                     var di: Int = 0;
                         //nom de la command
@@ -177,13 +177,13 @@ public class FFS : FFSObject
                         //add du child
                         object.addChild(child);
                         //recup des params
-                    var nfile: String = IOCore.readBlock(String(file), i: &i);
+                    var nfile: String = IOCore.readBlock(String(CString: file, encoding: NSASCIIStringEncoding)!, i: &i);
                         compiler(object.c(child), file: nfile.cStringUsingEncoding(NSASCIIStringEncoding)!);
                         }
                         else if(name == "var")
                         {
                         //recup command
-                            var command: String = IOCore.readWord(String(file), i: &i, separator: ";".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false);
+                            var command: String = IOCore.readWord(String(CString: file, encoding: NSASCIIStringEncoding)!, i: &i, separator: ";".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false);
                             var vi: Int = 0;
                         //nom de la command
                         IOCore.readWord(command, i: &vi, separator: " ".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false);
@@ -201,7 +201,7 @@ public class FFS : FFSObject
                         else if(name == "array")
                         {
                         //recup command
-                            var command: String = IOCore.readWord(String(file), i: &i, separator: ";".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false);
+                            var command: String = IOCore.readWord(String(CString: file, encoding: NSASCIIStringEncoding)!, i: &i, separator: ";".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false);
                             var vi: Int = 0;
                         //nom de la command
                         IOCore.readWord(command, i: &vi, separator: " ".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false);
@@ -249,13 +249,13 @@ public class FFS : FFSObject
                         {
                             var j: Int = i+1;
                         //si le nom corespond
-                        if(IOCore.readWord(String(m_fileContent), i: &j, separator: "\\".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false) == macroId)
+                            if(IOCore.readWord(String(CString: m_fileContent, encoding: NSASCIIStringEncoding)!, i: &j, separator: "\\".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false) == macroId)
                         {
                         //string = son debut + la macro + sa fin
                         //i = pos de /, donc lenght sur char avant
                         //j = pos de /, donc +1 pour char suivant
                         //longueur du string - j+1 pour num du char, longueur restante
-                        m_fileContent = (String(substr(m_fileContent, start: 0, end: i)) + macroValue + String(substr(m_fileContent, start: j+1,end: m_fileContent.count))).cStringUsingEncoding(NSASCIIStringEncoding)!;
+                            m_fileContent = (String(CString: substr(m_fileContent, start: 0, end: i), encoding: NSASCIIStringEncoding)! + macroValue + String(CString: substr(m_fileContent, start: j+1,end: m_fileContent.count), encoding: NSASCIIStringEncoding)!).cStringUsingEncoding(NSASCIIStringEncoding)!;
                         }
                     }
                 }
