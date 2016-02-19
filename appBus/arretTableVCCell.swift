@@ -10,6 +10,8 @@ import UIKit
 
 class arretTableVCCell: UITableViewCell {
 
+    
+    
     //MARK: properties
     @IBOutlet weak var lineImage: UIImageView!
     

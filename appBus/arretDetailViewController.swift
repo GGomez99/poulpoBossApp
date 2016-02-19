@@ -27,6 +27,9 @@ class arretDetailViewController: UITableViewController {
 
         return cell
 }
+    var listOfArret: [String] = IOAPI.getListOfArret()
+    var arretNumber = arretsTableVC.indexPath
+    
     
     /*
     // Override to support conditional editing of the table view.
