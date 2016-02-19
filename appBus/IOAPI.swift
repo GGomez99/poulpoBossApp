@@ -13,18 +13,22 @@ class IOAPI
     private static let netReader: NetReader = NetReader()
     private static let jsonReader: JSONReader = JSONReader()
 
-    static func start() {
+    /*static func start() {
         netReader.test()
+    }*/
+    
+    static func getTime(arret: String, completion: () -> ()) -> Arret
+    {
+        let a = netReader.getTime(arret)
+        completion()
+        return a
     }
     
-    static func getTime(arret: String, direction: String) -> Arret
+    static func getTime(arret: String, lines: [Line], completion: () -> ()) -> Arret
     {
-        return Arret(name: "arret", horaires: [])
-    }
-    
-    static func getTime(arret: String, direction: String, line: String) -> Arret
-    {
-        return Arret(name: "arret", horaires: [])
+        let a = netReader.getTime(arret, lignes: lines)
+        completion()
+        return a
     }
     
     
@@ -59,5 +63,19 @@ class IOAPI
     static func getListOfLine() -> [String]
     {
         return ELine.getListOfLines()
+    }
+    
+    static func tabToString(tab: [String]) -> String
+    {
+        var res: String = "";
+        for(var i: Int = 0; i < tab.count; i++)
+        {
+            res += tab [i];
+            if(i+1 < tab.count)
+            {
+                res += " / ";
+            }
+        }
+        return res
     }
 }

@@ -25,11 +25,15 @@
 		A9F623E01C19E3790018BA32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9F623DF1C19E3790018BA32 /* Assets.xcassets */; };
 		A9F623E31C19E3790018BA32 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9F623E11C19E3790018BA32 /* LaunchScreen.storyboard */; };
 		E03F8AFE1C3736EB0044BCDD /* enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03F8AFD1C3736EB0044BCDD /* enums.swift */; };
+		E06047FF1C71E71E00FD16A6 /* antibes.json in Resources */ = {isa = PBXBuildFile; fileRef = E06047FE1C71E71E00FD16A6 /* antibes.json */; };
+		E06048021C71F2FB00FD16A6 /* IOCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06048011C71F2FB00FD16A6 /* IOCore.swift */; };
+		E06048041C71F30800FD16A6 /* FFS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06048031C71F30800FD16A6 /* FFS.swift */; };
+		E06048061C71F31500FD16A6 /* FFSObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06048051C71F31500FD16A6 /* FFSObject.swift */; };
+		E06048081C71F33200FD16A6 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06048071C71F33200FD16A6 /* Error.swift */; };
 		E0EAED111C31DD4000D80BFE /* IOAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EAED101C31DD4000D80BFE /* IOAPI.swift */; };
 		E0EAED131C31DF3900D80BFE /* structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EAED121C31DF3900D80BFE /* structs.swift */; };
 		E0EAED151C31E3CA00D80BFE /* NetReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EAED141C31E3CA00D80BFE /* NetReader.swift */; };
 		E0EAED171C31E3DB00D80BFE /* JSONReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EAED161C31E3DB00D80BFE /* JSONReader.swift */; };
-		E0EAED191C31E68B00D80BFE /* antibes.json in Resources */ = {isa = PBXBuildFile; fileRef = E0EAED181C31E68B00D80BFE /* antibes.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,11 +59,15 @@
 		A9F623E41C19E3790018BA32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A9F624331C1A03790018BA32 /* BackTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackTableVC.swift; sourceTree = "<group>"; };
 		E03F8AFD1C3736EB0044BCDD /* enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = enums.swift; sourceTree = "<group>"; };
+		E06047FE1C71E71E00FD16A6 /* antibes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = antibes.json; sourceTree = "<group>"; };
+		E06048011C71F2FB00FD16A6 /* IOCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IOCore.swift; sourceTree = "<group>"; };
+		E06048031C71F30800FD16A6 /* FFS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFS.swift; sourceTree = "<group>"; };
+		E06048051C71F31500FD16A6 /* FFSObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFSObject.swift; sourceTree = "<group>"; };
+		E06048071C71F33200FD16A6 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		E0EAED101C31DD4000D80BFE /* IOAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IOAPI.swift; sourceTree = "<group>"; };
 		E0EAED121C31DF3900D80BFE /* structs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = structs.swift; sourceTree = "<group>"; };
 		E0EAED141C31E3CA00D80BFE /* NetReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetReader.swift; sourceTree = "<group>"; };
 		E0EAED161C31E3DB00D80BFE /* JSONReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONReader.swift; sourceTree = "<group>"; };
-		E0EAED181C31E68B00D80BFE /* antibes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = antibes.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +120,7 @@
 		A9F623D71C19E3790018BA32 /* appBus */ = {
 			isa = PBXGroup;
 			children = (
+				E06048001C71F2E500FD16A6 /* IOCore */,
 				E0EAED0E1C31DCD500D80BFE /* IOAPI */,
 				A9F623D81C19E3790018BA32 /* AppDelegate.swift */,
 				A965AD3A1C372F99004DF24F /* globalSettings.swift */,
@@ -141,14 +150,25 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		E06048001C71F2E500FD16A6 /* IOCore */ = {
+			isa = PBXGroup;
+			children = (
+				E06048011C71F2FB00FD16A6 /* IOCore.swift */,
+				E06048031C71F30800FD16A6 /* FFS.swift */,
+				E06048051C71F31500FD16A6 /* FFSObject.swift */,
+				E06048071C71F33200FD16A6 /* Error.swift */,
+			);
+			name = IOCore;
+			sourceTree = "<group>";
+		};
 		E0EAED0E1C31DCD500D80BFE /* IOAPI */ = {
 			isa = PBXGroup;
 			children = (
+				E06047FE1C71E71E00FD16A6 /* antibes.json */,
 				E0EAED101C31DD4000D80BFE /* IOAPI.swift */,
 				E0EAED121C31DF3900D80BFE /* structs.swift */,
 				E0EAED141C31E3CA00D80BFE /* NetReader.swift */,
 				E0EAED161C31E3DB00D80BFE /* JSONReader.swift */,
-				E0EAED181C31E68B00D80BFE /* antibes.json */,
 				E03F8AFD1C3736EB0044BCDD /* enums.swift */,
 			);
 			name = IOAPI;
@@ -215,9 +235,9 @@
 			files = (
 				A9779D851C1C7F5A00A40E13 /* CenturyGothic.ttf in Resources */,
 				A9F0204D1C38669900257D8E /* .gitignore in Resources */,
+				E06047FF1C71E71E00FD16A6 /* antibes.json in Resources */,
 				A9F623E31C19E3790018BA32 /* LaunchScreen.storyboard in Resources */,
 				A9F623E01C19E3790018BA32 /* Assets.xcassets in Resources */,
-				E0EAED191C31E68B00D80BFE /* antibes.json in Resources */,
 				A9F623DE1C19E3790018BA32 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -235,9 +255,11 @@
 				A9BFFB781C31BD9A005AD814 /* AppDelegate.swift in Sources */,
 				A965AD351C370A7F004DF24F /* PDFTableVC.swift in Sources */,
 				A9BFFB791C31BD9A005AD814 /* accueilVC.swift in Sources */,
+				E06048061C71F31500FD16A6 /* FFSObject.swift in Sources */,
+				E06048041C71F30800FD16A6 /* FFS.swift in Sources */,
 				E0EAED151C31E3CA00D80BFE /* NetReader.swift in Sources */,
 				A9E435941C5BF2FD009B60E9 /* PDFDownloader.swift in Sources */,
-				74778D231C7333F500A8C86B /* arretTableVCCell.swift in Sources */,
+				E06048021C71F2FB00FD16A6 /* IOCore.swift in Sources */,
 				A9BFFB7B1C31BD9A005AD814 /* arretsTableVC.swift in Sources */,
 				E0EAED171C31E3DB00D80BFE /* JSONReader.swift in Sources */,
 				747F2A4F1C68F4F3009EE7BE /* arretDetailViewController.swift in Sources */,
@@ -246,6 +268,7 @@
 				E03F8AFE1C3736EB0044BCDD /* enums.swift in Sources */,
 				A9BFFB891C31C2A6005AD814 /* SWRevealViewController.m in Sources */,
 				A965AD3D1C373B0E004DF24F /* PDFDetailViewController.swift in Sources */,
+				E06048081C71F33200FD16A6 /* Error.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

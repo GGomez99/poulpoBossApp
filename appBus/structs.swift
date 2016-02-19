@@ -16,16 +16,18 @@ struct Line
 
 struct Horaire
 {
-    let line: Line
-    let state: hState
-    let time: String?
+    let line: ELine
+    let direction: String
+    let via: String
+    let time0: String
+    var time1: String
     
 }
 
 struct Arret
 {
     let name: String
-    let horaires: [Horaire]
+    var horaires: [Horaire]
 }
 
 enum hState

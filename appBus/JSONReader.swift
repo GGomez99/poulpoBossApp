@@ -95,11 +95,8 @@ class JSONReader
         //stream vers le fichier
         let stream: NSInputStream = NSInputStream(fileAtPath: "\(NSBundle.mainBundle().resourcePath!)/antibes.json")!
         stream.open()
-        
         //file via le stream
         let file = try! NSJSONSerialization.JSONObjectWithStream(stream, options: NSJSONReadingOptions.MutableContainers)
-        
-        //reading
         if let a = file as? NSArray
         {
             for b in a
@@ -114,6 +111,10 @@ class JSONReader
                             {
                                 if let f = e as? NSDictionary
                                 {
+        
+        
+        
+        //reading
                                     array.append(Line(name: ELine.getELineFromNo(f["lineNo"] as! String), direction: f["name"] as! String))
                                 }
                             }
