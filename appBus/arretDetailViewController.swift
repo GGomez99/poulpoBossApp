@@ -1,7 +1,8 @@
 //
 //  arretDetailViewController.swift
 //  appBus
-//
+//arret.horaire,count
+//Arret.horaire[numérocell]
 //  Created by Clement ROIG on 08/02/2016.
 //  Copyright © 2016 Guyllian Gomez. All rights reserved.
 //
@@ -9,15 +10,22 @@
 import UIKit
 
 class arretDetailViewController: UITableViewController {
-
+    
+    var listOfArret: [String] = IOAPI.getListOfArret()
+    var arretNumber = arretsTableVC.indexPath
+    var numberOfCells = 0
+    var horaireArret: Arret = Arret(name: "",horaires:[])
+        
     override func viewDidLoad() {
         super.viewDidLoad()
+          dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0)) { [unowned self] in
+            self.horaireArret = IOAPI.getTime(listOfArret[arretNumber])
+        }
     }
-
         //Number of cells
    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return numberOfCells
     }
         // Configure the cell...
     
@@ -27,8 +35,6 @@ class arretDetailViewController: UITableViewController {
 
         return cell
 }
-    var listOfArret: [String] = IOAPI.getListOfArret()
-    var arretNumber = arretsTableVC.indexPath
     
     
     /*
