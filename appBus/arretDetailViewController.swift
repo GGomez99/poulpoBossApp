@@ -43,7 +43,7 @@ class arretDetailViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! arretTableVCCell
         
         cell.lineNumber.text = ELine.listOflineNo[horaireArret.horaires[indexPath.row].line]
-        cell.lineNumber.font = UIFont(name: global.mainFont, size: 12)
+        cell.lineNumber.font = UIFont(name: global.mainFont, size: 15)
         
         cell.viaLabel.text = horaireArret.horaires[indexPath.row].via
         
