@@ -38,6 +38,7 @@ public class FFS : FFSObject
         //si pas erreur : on lit et on stoke dans les tab
         if(!m_error.state())
         {
+            print(m_error.error());
             return;
         }
         
@@ -111,9 +112,9 @@ public class FFS : FFSObject
         if(m_fileContent[0] == "#".cStringUsingEncoding(NSASCIIStringEncoding)![0])
         {
             //si c'est bien ffs
-            if(IOCore.staticReadWord(String(CString: m_fileContent, encoding: NSASCIIStringEncoding)!, i: 1, separator: ";".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false) != "ffs")
+            if(IOCore.staticReadWord(m_fileContent, i: 1, separator: ";".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false) + [0] != "ffs".cStringUsingEncoding(NSASCIIStringEncoding)!)
             {//non
-                m_error.set(false, error: "[ERROR] [FFS] file no well formated");
+                m_error.set(false, error: "[ERROR] [FFS] file no well formated (no ffs)");
             }
             else
             { //ok bon format
@@ -123,7 +124,7 @@ public class FFS : FFSObject
         }
         else
         {
-           m_error.set(false, error: "[ERROR] [FFS] file no well formated");
+           m_error.set(false, error: "[ERROR] [FFS] file no well formated (no #)");
         }
         
         if(!m_error.state())
@@ -137,10 +138,10 @@ public class FFS : FFSObject
             if(m_fileContent[i] == "#".cStringUsingEncoding(NSASCIIStringEncoding)![0])
             { //je suis sur un #
                 //si c'est une macro
-                if(IOCore.staticReadWord(String(CString: m_fileContent, encoding: NSASCIIStringEncoding)!, i: i+1, separator: " ".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false) == "macro")
+                if(IOCore.staticReadWord(m_fileContent, i: i+1, separator: " ".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false) + [0] == "macro".cStringUsingEncoding(NSASCIIStringEncoding)!)
                 {
                     var j: Int = i+1;
-                    var txtCommand: String = IOCore.readWord(String(CString: m_fileContent, encoding: NSASCIIStringEncoding)!, i: &j, separator: ";".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false);
+                    var txtCommand: [CChar] = IOCore.readWord(m_fileContent, i: &j, separator: ";".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false);
                     loadMacro(txtCommand);
                     m_fileContent = substr(m_fileContent, start: 0, end: i) + substr(m_fileContent, start: j+1, end: m_fileContent.count);
                     i--;
@@ -158,63 +159,63 @@ public class FFS : FFSObject
             {// on est sur un #
                 //on recup la command
                 i++;
-                var name: String = IOCore.staticReadWord(String(CString: file, encoding: NSASCIIStringEncoding)!, i: i, separator: " ".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false);
+                var name: [CChar] = IOCore.staticReadWord(file, i: i, separator: " ".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false);
                 
-                if(name == "def")
+                if(name + [0] == "def".cStringUsingEncoding(NSASCIIStringEncoding)!)
                 {
                     //recup command
-                    var command: String = IOCore.readWord(String(CString: file, encoding: NSASCIIStringEncoding)!, i: &i, separator: "{".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false);
+                    var command: [CChar] = IOCore.readWord(file, i: &i, separator: "{".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false);
                     i++;
                     var di: Int = 0;
                         //nom de la command
                         IOCore.readWord(command, i: &di, separator: " ".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false);
                         di++;
                         //key
-                    var child: String = IOCore.readWord(command, i: &di, separator: "{".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false);
+                    var child: [CChar] = IOCore.readWord(command, i: &di, separator: "{".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false);
                         //on enleve les espaces
                         IOCore.removeSpaces(&child);
                         
                         //add du child
-                        object.addChild(child);
+                    object.addChild(String(CString: child, encoding: NSASCIIStringEncoding)!);
                         //recup des params
-                    var nfile: String = IOCore.readBlock(String(CString: file, encoding: NSASCIIStringEncoding)!, i: &i);
-                        compiler(object.c(child), file: nfile.cStringUsingEncoding(NSASCIIStringEncoding)!);
+                    var nfile: [CChar] = IOCore.readBlock(file, i: &i);
+                        compiler(object.c(String(CString: child, encoding: NSASCIIStringEncoding)!), file: nfile);
                         }
-                        else if(name == "var")
+                        else if(name + [0] == "var".cStringUsingEncoding(NSASCIIStringEncoding)!)
                         {
                         //recup command
-                            var command: String = IOCore.readWord(String(CString: file, encoding: NSASCIIStringEncoding)!, i: &i, separator: ";".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false);
+                            var command: [CChar] = IOCore.readWord(file, i: &i, separator: ";".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false);
                             var vi: Int = 0;
                         //nom de la command
                         IOCore.readWord(command, i: &vi, separator: " ".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false);
                         vi++;
                         //key
-                            var key: String = IOCore.readWord(command, i: &vi, separator: " ".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false);
+                            var key: [CChar] = IOCore.readWord(command, i: &vi, separator: " ".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false);
                         //on enleve les espaces
                         IOCore.removeSpaces(&key);
                         vi++;
                         //value
-                            var value: String = IOCore.readWord(command, i: &vi, separator: ";".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false);
+                            var value: [CChar] = IOCore.readWord(command, i: &vi, separator: ";".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false);
                         
-                        object.addValue(key, value: value);
+                        object.addValue(String(CString: key, encoding: NSASCIIStringEncoding)!, value: String(CString: value, encoding: NSASCIIStringEncoding)!);
                         }
-                        else if(name == "array")
+                        else if(name + [0] == "array".cStringUsingEncoding(NSASCIIStringEncoding)!)
                         {
                         //recup command
-                            var command: String = IOCore.readWord(String(CString: file, encoding: NSASCIIStringEncoding)!, i: &i, separator: ";".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false);
+                            var command: [CChar] = IOCore.readWord(file, i: &i, separator: ";".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false);
                             var vi: Int = 0;
                         //nom de la command
                         IOCore.readWord(command, i: &vi, separator: " ".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false);
                         vi++;
                         //key
-                            var key: String = IOCore.readWord(command, i: &vi, separator: ":".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false);
+                            var key: [CChar] = IOCore.readWord(command, i: &vi, separator: ":".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false);
                         //on enleve les espaces
                         IOCore.removeSpaces(&key);
                         vi++;
                         //value
-                            var strArray: String = IOCore.readWord(command, i: &vi, separator: ";".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false);
+                            var strArray: [CChar] = IOCore.readWord(command, i: &vi, separator: ";".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false);
                         
-                        object.addArray(key, array: readArray(strArray));
+                        object.addArray(String(CString: key, encoding: NSASCIIStringEncoding)!, array: readArray(strArray));
                         }
                         if(!m_error.state())
                         {
@@ -226,20 +227,20 @@ public class FFS : FFSObject
                         
                         
                         ///gestions des commands
-    private func loadMacro(macro: String)
+    private func loadMacro(macro: [CChar])
     {
         var i: Int = 0;
                         //si c bien une macro
-                if(IOCore.readWord(macro, i: &i, separator: " ".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false) != "macro")
+                if(IOCore.readWord(macro, i: &i, separator: " ".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false) != "macro".cStringUsingEncoding(NSASCIIStringEncoding)!)
                     {//non
                         m_error.set(false, error: "[ERROR] [FFS] invalid macro");
                         return;
                     }
                         //recup des args
                         i++;
-        var macroId: String = IOCore.readWord(macro, i: &i, separator: " ".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false);
+        var macroId: [CChar] = IOCore.readWord(macro, i: &i, separator: " ".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false);
                         i++;
-        var macroValue: String = IOCore.readWord(macro, i: &i, separator: ";".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false);
+        var macroValue: [CChar] = IOCore.readWord(macro, i: &i, separator: ";".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false);
                         
                         //mise en place
                         for(i = 0; i < m_fileContent.count; i++)
@@ -249,29 +250,29 @@ public class FFS : FFSObject
                         {
                             var j: Int = i+1;
                         //si le nom corespond
-                            if(IOCore.readWord(String(CString: m_fileContent, encoding: NSASCIIStringEncoding)!, i: &j, separator: "\\".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false) == macroId)
+                            if(IOCore.readWord(m_fileContent, i: &j, separator: "\\".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false) == macroId)
                         {
                         //string = son debut + la macro + sa fin
                         //i = pos de /, donc lenght sur char avant
                         //j = pos de /, donc +1 pour char suivant
                         //longueur du string - j+1 pour num du char, longueur restante
-                            m_fileContent = (String(CString: substr(m_fileContent, start: 0, end: i), encoding: NSASCIIStringEncoding)! + macroValue + String(CString: substr(m_fileContent, start: j+1,end: m_fileContent.count), encoding: NSASCIIStringEncoding)!).cStringUsingEncoding(NSASCIIStringEncoding)!;
+                            m_fileContent = (String(CString: substr(m_fileContent, start: 0, end: i), encoding: NSASCIIStringEncoding)! + String(CString: macroValue, encoding: NSASCIIStringEncoding)! + String(CString: substr(m_fileContent, start: j+1,end: m_fileContent.count), encoding: NSASCIIStringEncoding)!).cStringUsingEncoding(NSASCIIStringEncoding)!;
                         }
                     }
                 }
             }
                         
                         
-    private func readArray(strArray: String) -> [String]
+    private func readArray(strArray: [CChar]) -> [String]
                         {
                             var returned: [String] = [];
                             var i: Int = 0;
                         
                         //tant que i est pas au bout
-                        while(i < strArray.characters.count)
+                        while(i < strArray.count)
                         {
                         //on add a returned les valeurs
-                        returned.append(IOCore.readWord(strArray, i: &i, separator: ",".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false));
+                            returned.append(String(CString: IOCore.readWord(strArray, i: &i, separator: ",".cStringUsingEncoding(NSASCIIStringEncoding)![0], enter: false), encoding: NSASCIIStringEncoding)!);
                         i++;
                         }
                         

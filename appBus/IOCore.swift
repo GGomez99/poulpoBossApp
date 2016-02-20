@@ -13,25 +13,25 @@ public class IOCore
     private init() { }
     
     ///lecture d'un mot
-    public static func staticReadWord(str: String, i: Int, separator: CChar, enter: Bool) -> String
+    public static func staticReadWord(str: [CChar], i: Int, separator: CChar, enter: Bool) -> [CChar]
     {
         var j: Int = i;
     return readWord(str, i: &j, separator: separator, enter: enter);
     }
     
-    public static func readWord(str: String, inout i: Int, separator: CChar, enter: Bool) -> String
+    public static func readWord(str: [CChar], inout i: Int, separator: CChar, enter: Bool) -> [CChar]
     {
     //si str vide return rien
-    if(str.characters.count <= i)
+    if(str.count <= i)
     {
-        return "";
+        return [];
     }
     var result: [CChar] = [];
     var lecture: CChar;
     
     repeat
     {
-        lecture = str.cStringUsingEncoding(NSASCIIStringEncoding)![i];
+        lecture = str[i];
     if(lecture == separator || (enter ? lecture == "\n".cStringUsingEncoding(NSASCIIStringEncoding)![0]: false))
         {
             break;
@@ -39,17 +39,17 @@ public class IOCore
     i++;
     result.append(lecture);
     }
-    while(str.characters.count > i);
-    return String(result);
+    while(str.count > i);
+        return result;
     }
     
     ///lecture d'un block
-    public static func readBlock(str: String, inout i: Int) -> String
+    public static func readBlock(str: [CChar], inout i: Int) -> [CChar]
     {
     //si str vide return rien
-        if(str.characters.count <= i)
+        if(str.count <= i)
         {
-            return "";
+            return [];
         }
         var result: [CChar] = [];
         var lecture: CChar;
@@ -57,7 +57,7 @@ public class IOCore
     
     repeat
     {
-    lecture = str.cStringUsingEncoding(NSASCIIStringEncoding)![i];
+    lecture = str[i];
     if(lecture == "}".cStringUsingEncoding(NSASCIIStringEncoding)![0])
     {
     dans--;
@@ -73,25 +73,25 @@ public class IOCore
     i++;
     result.append(lecture);
     }
-    while(str.characters.count > i);
+    while(str.count > i);
     
-    return String(result);
+        return result
     }
     
     
     ///useful
-    public static func removeSpaces(inout str: String)
+    public static func removeSpaces(inout str: [CChar])
     {
         var returned: [CChar] = [];
         
-        for(var i: Int = 0; i<str.characters.count; i++)
+        for(var i: Int = 0; i<str.count; i++)
         {
-            if(str.cStringUsingEncoding(NSASCIIStringEncoding)![i] != " ".cStringUsingEncoding(NSASCIIStringEncoding)![0] && str.cStringUsingEncoding(NSASCIIStringEncoding)![i] != "\u{31}".cStringUsingEncoding(NSASCIIStringEncoding)![0] && str.cStringUsingEncoding(NSASCIIStringEncoding)![i] != "\n".cStringUsingEncoding(NSASCIIStringEncoding)![0])
+            if(str[i] != " ".cStringUsingEncoding(NSASCIIStringEncoding)![0] && str[i] != "\u{31}".cStringUsingEncoding(NSASCIIStringEncoding)![0] && str[i] != "\n".cStringUsingEncoding(NSASCIIStringEncoding)![0])
         {
-            returned.append(str.cStringUsingEncoding(NSASCIIStringEncoding)![i]);
+            returned.append(str[i]);
             }
         }
-        str = String(returned);
+        str = returned;
     }
     
     public static func stringVectorToInt(vect: [String]) -> [Int]
