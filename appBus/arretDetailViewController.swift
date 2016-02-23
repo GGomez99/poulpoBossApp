@@ -15,25 +15,31 @@ class arretDetailViewController: UITableViewController {
     var arretNumber = arretsTableVC.indexPath
     var numberOfCells = 0
     var horaireArret: Arret = Arret(name: "",horaires:[])
+    @IBOutlet var lineTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-          dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0)) { [unowned self] in
+        print("view loaded")
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0)) { [unowned self] in
             
         //Défninir le nombre de cells
             self.horaireArret = IOAPI.getTime(self.listOfArret[arretsTableVC.indexPath])
+            print("get horaires arret : \(self.horaireArret)")
             self.numberOfCells = self.horaireArret.horaires.count
-        }
         
         //Refresh the TableView
-        dispatch_async(dispatch_get_main_queue()) { [unowned self] in
-            self.refreshControl
+            
+            dispatch_async(dispatch_get_main_queue()) { [unowned self] in
+                self.lineTableView.reloadData()
+                print("refresh tableview")
+            }
         }
     }
     
         //Number of cells
    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
+        print("setting number of cells to \(numberOfCells)")
         return numberOfCells
     }
         // Configure the cell...
@@ -41,15 +47,24 @@ class arretDetailViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellIdentifier = "arretTableVCCell"
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! arretTableVCCell
+        var minuteP1 = " minutes"
+        var minuteP2 = " minutes"
+        
         
         cell.lineNumber.text = ELine.listOflineNo[horaireArret.horaires[indexPath.row].line]
-        cell.lineNumber.font = UIFont(name: global.mainFont, size: 15)
+        cell.lineNumber.font = UIFont(name: global.mainFont, size: 25)
         
         cell.viaLabel.text = horaireArret.horaires[indexPath.row].via
         
-        cell.passage1label.text = horaireArret.horaires[indexPath.row].time0
+        if horaireArret.horaires[indexPath.row].time0 == "1" {
+            minuteP1 = " minute"
+        }
+        cell.passage1label.text = "Passage dans : " + horaireArret.horaires[indexPath.row].time0 + minuteP1
         
-        cell.passage2label.text = horaireArret.horaires[indexPath.row].time1
+        if horaireArret.horaires[indexPath.row].time1 == "1" {
+            minuteP2 = " minute"
+        }
+        cell.passage2label.text = "Prochain passage dans : " + horaireArret.horaires[indexPath.row].time1 + minuteP2
         
         cell.DirectionLabel.text = horaireArret.horaires[indexPath.row].direction
         
