@@ -15,25 +15,31 @@ class arretDetailViewController: UITableViewController {
     var arretNumber = arretsTableVC.indexPath
     var numberOfCells = 0
     var horaireArret: Arret = Arret(name: "",horaires:[])
+    @IBOutlet var lineTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-          dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0)) { [unowned self] in
+        print("view loaded")
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0)) { [unowned self] in
             
         //Défninir le nombre de cells
             self.horaireArret = IOAPI.getTime(self.listOfArret[arretsTableVC.indexPath])
+            print("get horaires arret : \(self.horaireArret)")
             self.numberOfCells = self.horaireArret.horaires.count
-        }
         
         //Refresh the TableView
-        dispatch_async(dispatch_get_main_queue()) { [unowned self] in
-            self.refreshControl
+            
+            dispatch_async(dispatch_get_main_queue()) { [unowned self] in
+                self.lineTableView.reloadData()
+                print("refresh tableview")
+            }
         }
     }
     
         //Number of cells
    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
+        print("setting number of cells to \(numberOfCells)")
         return numberOfCells
     }
         // Configure the cell...
@@ -44,7 +50,7 @@ class arretDetailViewController: UITableViewController {
         
         cell.lineNumber.text = ELine.listOflineNo[horaireArret.horaires[indexPath.row].line]
         cell.lineNumber.font = UIFont(name: global.mainFont, size: 15)
-        
+        print("set line number \(ELine.listOflineNo[horaireArret.horaires[indexPath.row].line]) for cell \(cell)")
         cell.viaLabel.text = horaireArret.horaires[indexPath.row].via
         
         cell.passage1label.text = horaireArret.horaires[indexPath.row].time0
