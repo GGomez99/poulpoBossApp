@@ -47,15 +47,24 @@ class arretDetailViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellIdentifier = "arretTableVCCell"
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! arretTableVCCell
+        var minuteP1 = " minutes"
+        var minuteP2 = " minutes"
+        
         
         cell.lineNumber.text = ELine.listOflineNo[horaireArret.horaires[indexPath.row].line]
-        cell.lineNumber.font = UIFont(name: global.mainFont, size: 15)
-        print("set line number \(ELine.listOflineNo[horaireArret.horaires[indexPath.row].line]) for cell \(cell)")
+        cell.lineNumber.font = UIFont(name: global.mainFont, size: 25)
+        
         cell.viaLabel.text = horaireArret.horaires[indexPath.row].via
         
-        cell.passage1label.text = horaireArret.horaires[indexPath.row].time0
+        if horaireArret.horaires[indexPath.row].time0 == "1" {
+            minuteP1 = " minute"
+        }
+        cell.passage1label.text = "Passage dans : " + horaireArret.horaires[indexPath.row].time0 + minuteP1
         
-        cell.passage2label.text = horaireArret.horaires[indexPath.row].time1
+        if horaireArret.horaires[indexPath.row].time1 == "1" {
+            minuteP2 = " minute"
+        }
+        cell.passage2label.text = "Prochain passage dans : " + horaireArret.horaires[indexPath.row].time1 + minuteP2
         
         cell.DirectionLabel.text = horaireArret.horaires[indexPath.row].direction
         
