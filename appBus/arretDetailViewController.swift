@@ -20,11 +20,17 @@ class arretDetailViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("view loaded")
+        
+        //set title view
+        self.title = self.listOfArret[arretsTableVC.indexPath]
+        
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0)) { [unowned self] in
             
-        //Défninir le nombre de cells
+        //Request to Adrien
             self.horaireArret = IOAPI.getTime(self.listOfArret[arretsTableVC.indexPath])
             print("get horaires arret : \(self.horaireArret)")
+            print("choubidou" + self.listOfArret[arretsTableVC.indexPath])
+        //Set number of cells
             self.numberOfCells = self.horaireArret.horaires.count
         
         //Refresh the TableView
@@ -52,7 +58,7 @@ class arretDetailViewController: UITableViewController {
         
         
         cell.lineNumber.text = ELine.listOflineNo[horaireArret.horaires[indexPath.row].line]
-        cell.lineNumber.font = UIFont(name: global.mainFont, size: 25)
+        cell.lineNumber.font = UIFont(name: global.mainFont, size: 40)
         
         cell.viaLabel.text = horaireArret.horaires[indexPath.row].via
         
@@ -66,11 +72,16 @@ class arretDetailViewController: UITableViewController {
         }
         cell.passage2label.text = "Prochain passage dans : " + horaireArret.horaires[indexPath.row].time1 + minuteP2
         
+        if horaireArret.horaires[indexPath.row].time0 == horaireArret.horaires[indexPath.row].time1 {
+            cell.passage2label.text = "Pas de prochain passage"
+        }
         cell.DirectionLabel.text = horaireArret.horaires[indexPath.row].direction
+        
+        cell.lineImage.image = UIImage(named: "line\(ELine.listOflineNo[horaireArret.horaires[indexPath.row].line]!)")
         
         return cell
     
-    }
+        }
     
     
     /*

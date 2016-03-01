@@ -53,7 +53,9 @@ class arretsTableVC: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
+                print("set \(indexPath.row) à arretsTableVC.indexPath")
                 arretsTableVC.indexPath = indexPath.row
+                print("arretTableVC.indexPath a été set à \(arretsTableVC.indexPath)")
             }
         }
     }
