@@ -28,8 +28,7 @@ class arretDetailViewController: UITableViewController {
             
         //Request to Adrien
             self.horaireArret = IOAPI.getTime(self.listOfArret[arretsTableVC.indexPath])
-            print("get horaires arret : \(self.horaireArret)")
-            print("choubidou" + self.listOfArret[arretsTableVC.indexPath])
+            
         //Set number of cells
             self.numberOfCells = self.horaireArret.horaires.count
         
@@ -53,36 +52,40 @@ class arretDetailViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellIdentifier = "arretTableVCCell"
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! arretTableVCCell
-        var minuteP1 = " minutes"
-        var minuteP2 = " minutes"
+        var minuteP1 = " min"
+        var minuteP2 = " min"
         
-        
+        //Edit the line Number
         cell.lineNumber.text = ELine.listOflineNo[horaireArret.horaires[indexPath.row].line]
         cell.lineNumber.font = UIFont(name: global.mainFont, size: 40)
         
-        cell.viaLabel.text = horaireArret.horaires[indexPath.row].via
+        //Edit the Via Label
+        cell.viaLabel.text = "\(horaireArret.horaires[indexPath.row].via)\n"
         
+        //Edit next bus stops
         if horaireArret.horaires[indexPath.row].time0 == "1" {
-            minuteP1 = " minute"
+            minuteP1 = " min"
         }
-        cell.passage1label.text = "Passage dans : " + horaireArret.horaires[indexPath.row].time0 + minuteP1
+        cell.passage1label.text = "Passage : " + horaireArret.horaires[indexPath.row].time0 + minuteP1
         
         if horaireArret.horaires[indexPath.row].time1 == "1" {
-            minuteP2 = " minute"
+            minuteP2 = " min"
         }
-        cell.passage2label.text = "Prochain passage dans : " + horaireArret.horaires[indexPath.row].time1 + minuteP2
+        cell.passage2label.text = " puis " + horaireArret.horaires[indexPath.row].time1 + minuteP2
         
         if horaireArret.horaires[indexPath.row].time0 == horaireArret.horaires[indexPath.row].time1 {
-            cell.passage2label.text = "Pas de prochain passage"
+            cell.passage2label.text = " "
         }
+        
+        //Edit Direction Label
         cell.DirectionLabel.text = horaireArret.horaires[indexPath.row].direction
         
+        //Edit line Image
         cell.lineImage.image = UIImage(named: "line\(ELine.listOflineNo[horaireArret.horaires[indexPath.row].line]!)")
         
         return cell
     
         }
-    
     
     /*
     // Override to support conditional editing of the table view.
