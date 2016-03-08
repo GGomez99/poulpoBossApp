@@ -25,6 +25,12 @@ class arretTableVCCell: UITableViewCell {
     
     @IBOutlet weak var passage2label: UILabel!
     
+    @IBOutlet weak var loadingIcon: UIActivityIndicatorView!
+    
+    @IBOutlet weak var versLabel: UILabel!
+    
+    @IBOutlet weak var viaPrefixeLabel: UILabel!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

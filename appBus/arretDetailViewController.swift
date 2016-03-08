@@ -13,13 +13,19 @@ class arretDetailViewController: UITableViewController {
     
     var listOfArret: [String] = IOAPI.getListOfArret()
     var arretNumber = arretsTableVC.indexPath
-    var numberOfCells = 0
+    var numberOfCells = 1
     var horaireArret: Arret = Arret(name: "",horaires:[])
+    var horaireGet: Bool = false
     @IBOutlet var lineTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("view loaded")
+        
+        //définie le style du title
+        let navbarFont = UIFont(name: global.mainFont, size: 25) ?? UIFont.systemFontOfSize(25)
+        navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: navbarFont, NSForegroundColorAttributeName: UIColor(hue: 0.905, saturation: 0.88, brightness: 0.78, alpha: 1)]
+        navigationController?.navigationBar.barTintColor = UIColor(hue: 312/359, saturation: 10/100, brightness: 95/100, alpha: 1)
         
         //Sort alphabetically ListOfArret
         listOfArret.sortInPlace(){ $0 < $1 }
@@ -42,6 +48,7 @@ class arretDetailViewController: UITableViewController {
         //Refresh the TableView
             
             dispatch_async(dispatch_get_main_queue()) { [unowned self] in
+                self.horaireGet = true
                 self.lineTableView.reloadData()
                 print("refresh tableview")
             }
@@ -59,38 +66,51 @@ class arretDetailViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellIdentifier = "arretTableVCCell"
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! arretTableVCCell
-        var minuteP1 = " min"
-        var minuteP2 = " min"
         
+        if horaireGet == false {
+            
+            //set visible loading icon
+            cell.loadingIcon.alpha = CGFloat(1)
+            
+            //Set labels invisible when loading
+            cell.DirectionLabel.alpha = CGFloat(0)
+            cell.viaLabel.alpha = CGFloat(0)
+            cell.passage1label.alpha = CGFloat(0)
+            cell.passage2label.alpha = CGFloat(0)
+            cell.lineNumber.alpha = CGFloat(0)
+            cell.versLabel.alpha = CGFloat(0)
+            cell.viaPrefixeLabel.alpha = CGFloat(0)
+        } else {
+            
+            //set invisible loading icon
+            cell.loadingIcon.alpha = CGFloat(0)
+            
+            //Edit the line Number
+            cell.lineNumber.text = ELine.listOflineNo[horaireArret.horaires[indexPath.row].line]
+            cell.lineNumber.font = UIFont(name: global.mainFont, size: 40)
         
-        //Edit the line Number
-        cell.lineNumber.text = ELine.listOflineNo[horaireArret.horaires[indexPath.row].line]
-        cell.lineNumber.font = UIFont(name: global.mainFont, size: 40)
+            //Edit next bus stops
+
+            cell.passage1label.text = "Passage : " + horaireArret.horaires[indexPath.row].time0 + "min"
         
-        //Edit the Via Label
-        cell.viaLabel.text = "\(horaireArret.horaires[indexPath.row].via)\n"
+            cell.passage2label.text = " puis " + horaireArret.horaires[indexPath.row].time1 + "min"
         
-        //Edit next bus stops
-        if horaireArret.horaires[indexPath.row].time0 == "1" {
-            minuteP1 = " min"
+            if horaireArret.horaires[indexPath.row].time0 == horaireArret.horaires[indexPath.row].time1 {
+                cell.passage2label.text = " "
+            }
+            
+            //Edit the Via Label
+            cell.viaLabel.text = "\(horaireArret.horaires[indexPath.row].via)\n"
+            if cell.viaLabel == " " {
+                cell.viaLabel == cell.passage1label.text! + cell.passage2label.text!
+            }
+            
+            //Edit Direction Label
+            cell.DirectionLabel.text = horaireArret.horaires[indexPath.row].direction
+        
+            //Edit line Image
+            cell.lineImage.image = UIImage(named: "line\(ELine.listOflineNo[horaireArret.horaires[indexPath.row].line]!)")
         }
-        cell.passage1label.text = "Passage : " + horaireArret.horaires[indexPath.row].time0 + minuteP1
-        
-        if horaireArret.horaires[indexPath.row].time1 == "1" {
-            minuteP2 = " min"
-        }
-        cell.passage2label.text = " puis " + horaireArret.horaires[indexPath.row].time1 + minuteP2
-        
-        if horaireArret.horaires[indexPath.row].time0 == horaireArret.horaires[indexPath.row].time1 {
-            cell.passage2label.text = " "
-        }
-        
-        //Edit Direction Label
-        cell.DirectionLabel.text = horaireArret.horaires[indexPath.row].direction
-        
-        //Edit line Image
-        cell.lineImage.image = UIImage(named: "line\(ELine.listOflineNo[horaireArret.horaires[indexPath.row].line]!)")
-        
         return cell
     
         }
