@@ -21,16 +21,23 @@ class arretDetailViewController: UITableViewController {
         super.viewDidLoad()
         print("view loaded")
         
+        //Sort alphabetically ListOfArret
+        listOfArret.sortInPlace(){ $0 < $1 }
+        
         //set title view
         self.title = self.listOfArret[arretsTableVC.indexPath]
         
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0)) { [unowned self] in
+            
+            print(self.listOfArret)
+            print(self.listOfArret[arretsTableVC.indexPath])
             
         //Request to Adrien
             self.horaireArret = IOAPI.getTime(self.listOfArret[arretsTableVC.indexPath])
             
         //Set number of cells
             self.numberOfCells = self.horaireArret.horaires.count
+
         
         //Refresh the TableView
             
@@ -54,6 +61,7 @@ class arretDetailViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! arretTableVCCell
         var minuteP1 = " min"
         var minuteP2 = " min"
+        
         
         //Edit the line Number
         cell.lineNumber.text = ELine.listOflineNo[horaireArret.horaires[indexPath.row].line]

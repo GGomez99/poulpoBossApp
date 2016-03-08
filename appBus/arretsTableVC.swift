@@ -54,7 +54,12 @@ class arretsTableVC: UITableViewController {
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 print("set \(indexPath.row) à arretsTableVC.indexPath")
-                arretsTableVC.indexPath = indexPath.row
+                print(sections)
+                for indexPathSection in 0..<indexPath.section {
+                    arretsTableVC.indexPath = arretsTableVC.indexPath + self.sections[indexPathSection].arrets.count
+                    print("adding \(self.sections[indexPathSection].arrets.count) to arretsTableVC.indexPath")
+                }
+                arretsTableVC.indexPath = arretsTableVC.indexPath + indexPath.row
                 print("arretTableVC.indexPath a été set à \(arretsTableVC.indexPath)")
             }
         }
