@@ -86,7 +86,7 @@ public class IOCore
         
         for(var i: Int = 0; i<str.count; i++)
         {
-            if(str[i] != " ".cStringUsingEncoding(NSASCIIStringEncoding)![0] && str[i] != "\u{31}".cStringUsingEncoding(NSASCIIStringEncoding)![0] && str[i] != "\n".cStringUsingEncoding(NSASCIIStringEncoding)![0])
+            if(str[i] != " ".cStringUsingEncoding(NSASCIIStringEncoding)![0] && str[i] != "\u{32}".cStringUsingEncoding(NSASCIIStringEncoding)![0] && str[i] != "\n".cStringUsingEncoding(NSASCIIStringEncoding)![0])
         {
             returned.append(str[i]);
             }

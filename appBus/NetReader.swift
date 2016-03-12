@@ -34,24 +34,10 @@ class NetReader
             //on crée l'horaire
             for o in ffile.getFFSObjectArray()
             {
-                let h: Horaire = Horaire(line: ELine.getELineFromNo(o.getValue("name")), direction: o.getValue("direction"), via: IOAPI.tabToString(o.getArray("via")), time0: o.getValue("time"), time1: o.getValue("time"));
-                var isset = false;
-                //on cherche si il existe on set l'horaire 2
-                for var ho in res.horaires
-                {
-                    if(ho.line == h.line && ho.direction == h.direction && ho.via == h.via)
-                    {
-                        ho.time1 = h.time0;
-                        isset = true;
-                        break;
-                    }
-                    
-                }
-                //sinon on add
-                if(!isset)
-                {
-                    res.horaires.append(h);
-                }
+                let h: Horaire = Horaire(line: ELine.getELineFromNo(o.getValue("name")), direction: o.getValue("direction"), via: o.getValue("via"), time0: o.getValue("time0"), time1: o.getValue("time1"));
+                
+                res.horaires.append(h);
+                
             }
         }
         return res;
@@ -65,26 +51,13 @@ class NetReader
         {
             let ffile: FFS = FFS(file: html as String);
             //on crée l'horaire
+            print(ffile.getFileContent())
             for o in ffile.getFFSObjectArray()
             {
-                let h: Horaire = Horaire(line: ELine.getELineFromNo(o.getValue("name")), direction: o.getValue("direction"), via: IOAPI.tabToString(o.getArray("via")), time0: o.getValue("time"), time1: o.getValue("time"));
-                var isset = false;
-                //on cherche si il existe on set l'horaire 2
-                for var ho in res.horaires
-                {
-                    if(ho.line == h.line && ho.direction == h.direction && ho.via == h.via)
-                    {
-                        ho.time1 = h.time0;
-                        isset = true;
-                        break;
-                    }
-                    
-                }
-                //sinon on add
-                if(!isset)
-                {
-                    res.horaires.append(h);
-                }
+                let h: Horaire = Horaire(line: ELine.getELineFromNo(o.getValue("name")), direction: o.getValue("direction"), via: o.getValue("via"), time0: o.getValue("time0"), time1: o.getValue("time1"));
+                
+                res.horaires.append(h);
+                
             }
         }
         
