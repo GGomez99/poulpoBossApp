@@ -7,8 +7,16 @@
 //
 
 import UIKit
+import CoreData
 
-class arretsTableVC: UITableViewController {
+class arretsTableVC: UITableViewController, UISearchResultsUpdating {
+    
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
+  
+    var filteredArrets = [String]()
     
     class arret: NSObject {
         let arretsList: String
@@ -41,6 +49,11 @@ class arretsTableVC: UITableViewController {
         navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: navbarFont, NSForegroundColorAttributeName: UIColor(hue: 0.905, saturation: 0.88, brightness: 0.78, alpha: 1)]
         navigationController?.navigationBar.barTintColor = UIColor(hue: 312/359, saturation: 10/100, brightness: 95/100, alpha: 1)
         
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        tableView.tableHeaderView = searchController.searchBar
     }
 
     override func didReceiveMemoryWarning() {
@@ -115,6 +128,7 @@ class arretsTableVC: UITableViewController {
         numberOfRowsInSection section: Int)
         -> Int {
             return self.sections[section].arrets.count
+            
     }
     
     override func tableView(tableView: UITableView,
@@ -151,4 +165,17 @@ class arretsTableVC: UITableViewController {
         -> Int {
             return self.collation.sectionForSectionIndexTitleAtIndex(index)
     }
+    func filterContentForSearchText(searchText: String, scope: String = "All") {
+        filteredArrets = listArretStr.filter { Arret in
+            return Arret.lowercaseString.containsString(searchText.lowercaseString)
+        }
+        
+        tableView.reloadData()
+    }
+    /*override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if searchController.active && searchController.searchBar.text != "" {
+            return filteredCandies.count
+        }
+        return candies.count
+    }*/
 }
