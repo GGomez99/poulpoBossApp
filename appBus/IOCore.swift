@@ -24,7 +24,7 @@ public class IOCore
     //si str vide return rien
     if(str.count <= i)
     {
-        return [];
+        return [" ".cStringUsingEncoding(NSASCIIStringEncoding)![0]];
     }
     var result: [CChar] = [];
     var lecture: CChar;
