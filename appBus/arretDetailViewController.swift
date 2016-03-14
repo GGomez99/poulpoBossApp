@@ -100,10 +100,11 @@ class arretDetailViewController: UITableViewController {
             }
             
             //Edit the Via Label
-            cell.viaLabel.text = "\(horaireArret.horaires[indexPath.row].via)\n"
-            if cell.viaLabel == " " {
-                cell.viaLabel == cell.passage1label.text! + cell.passage2label.text!
-            }
+            if horaireArret.horaires[indexPath.row].via != "nil"
+            {
+                cell.viaLabel.text = "\(horaireArret.horaires[indexPath.row].via)\n"
+            }else
+            {cell.viaLabel.setValue(<#T##value: AnyObject?##AnyObject?#>, forKey: <#T##String#>)
             
             //Edit Direction Label
             cell.DirectionLabel.text = horaireArret.horaires[indexPath.row].direction
