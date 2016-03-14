@@ -46,7 +46,7 @@ class NetReader
     func getTime(arret: String) -> Arret
     {
         var res: Arret = Arret(name: arret, horaires: []);
-        let url = NSURL(string: "http://envibus.kyrandia.org/tempsReel/?arret="+arret)
+        let url = NSURL(string: "http://envibus.kyrandia.org/tempsReel/?arret="+arret.stringByReplacingOccurrencesOfString(" ", withString: "%20"))
         if let html = try? NSString(contentsOfURL: url!, usedEncoding: nil)
         {
             let ffile: FFS = FFS(file: html as String);

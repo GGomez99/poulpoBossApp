@@ -77,7 +77,6 @@ class arretDetailViewController: UITableViewController {
             cell.DirectionLabel.alpha = CGFloat(0)
             cell.viaLabel.alpha = CGFloat(0)
             cell.passage1label.alpha = CGFloat(0)
-            cell.passage2label.alpha = CGFloat(0)
             cell.lineNumber.alpha = CGFloat(0)
             cell.versLabel.alpha = CGFloat(0)
             cell.viaPrefixeLabel.alpha = CGFloat(0)
@@ -90,7 +89,6 @@ class arretDetailViewController: UITableViewController {
             cell.DirectionLabel.alpha = CGFloat(1)
             cell.viaLabel.alpha = CGFloat(1)
             cell.passage1label.alpha = CGFloat(1)
-            cell.passage2label.alpha = CGFloat(1)
             cell.lineNumber.alpha = CGFloat(1)
             cell.versLabel.alpha = CGFloat(1)
             cell.viaPrefixeLabel.alpha = CGFloat(1)
@@ -100,13 +98,11 @@ class arretDetailViewController: UITableViewController {
             cell.lineNumber.font = UIFont(name: global.mainFont, size: 40)
         
             //Edit next bus stops
-
-            cell.passage1label.text = "Passage : " + horaireArret.horaires[indexPath.row].time0 + " min"
-        
-            cell.passage2label.text = " puis " + horaireArret.horaires[indexPath.row].time1 + " min"
-        
+            
             if horaireArret.horaires[indexPath.row].time0 == horaireArret.horaires[indexPath.row].time1 {
-                cell.passage2label.text = " "
+                cell.passage1label.text = "Passage : " + horaireArret.horaires[indexPath.row].time0 + " min"
+            } else {
+                cell.passage1label.text = "Passage : " + horaireArret.horaires[indexPath.row].time0 + " min" + " puis " + horaireArret.horaires[indexPath.row].time1 + " min"
             }
             
             //Edit the Via Label
