@@ -20,7 +20,7 @@ class arretDetailViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("view loaded")
+        print("view loaded")		
         
         //définie le style du title
         let navbarFont = UIFont(name: global.mainFont, size: 25) ?? UIFont.systemFontOfSize(25)
@@ -41,6 +41,7 @@ class arretDetailViewController: UITableViewController {
         //Request to Adrien
             self.horaireArret = IOAPI.getTime(self.listOfArret[arretsTableVC.indexPath])
             
+            print(self.horaireArret)
         //Set number of cells
             self.numberOfCells = self.horaireArret.horaires.count
 
@@ -84,6 +85,15 @@ class arretDetailViewController: UITableViewController {
             
             //set invisible loading icon
             cell.loadingIcon.alpha = CGFloat(0)
+            
+            //set labels visible
+            cell.DirectionLabel.alpha = CGFloat(1)
+            cell.viaLabel.alpha = CGFloat(1)
+            cell.passage1label.alpha = CGFloat(1)
+            cell.passage2label.alpha = CGFloat(1)
+            cell.lineNumber.alpha = CGFloat(1)
+            cell.versLabel.alpha = CGFloat(1)
+            cell.viaPrefixeLabel.alpha = CGFloat(1)
             
             //Edit the line Number
             cell.lineNumber.text = ELine.listOflineNo[horaireArret.horaires[indexPath.row].line]
