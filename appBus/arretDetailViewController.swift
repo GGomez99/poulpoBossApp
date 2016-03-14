@@ -91,9 +91,9 @@ class arretDetailViewController: UITableViewController {
         
             //Edit next bus stops
 
-            cell.passage1label.text = "Passage : " + horaireArret.horaires[indexPath.row].time0 + "min"
+            cell.passage1label.text = "Passage : " + horaireArret.horaires[indexPath.row].time0 + " min"
         
-            cell.passage2label.text = " puis " + horaireArret.horaires[indexPath.row].time1 + "min"
+            cell.passage2label.text = " puis " + horaireArret.horaires[indexPath.row].time1 + " min"
         
             if horaireArret.horaires[indexPath.row].time0 == horaireArret.horaires[indexPath.row].time1 {
                 cell.passage2label.text = " "
