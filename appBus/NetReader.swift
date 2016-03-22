@@ -27,17 +27,20 @@ class NetReader
             }
         }
         
-        let url = NSURL(string: str)
-        if let html = try? NSString(contentsOfURL: url!, usedEncoding: nil)
+        let url = NSURL(string: str)!
+        if let html = try? NSString(contentsOfURL: url, usedEncoding: nil)
         {
-            let ffile: FFS = FFS(file: html as String);
-            //on crée l'horaire
-            for o in ffile.getFFSObjectArray()
+            if let json = try? NSJSONSerialization.JSONObjectWithData(html.dataUsingEncoding(NSUnicodeStringEncoding)!, options: .AllowFragments) as! NSArray
             {
-                let h: Horaire = Horaire(line: ELine.getELineFromNo(o.getValue("name")), direction: o.getValue("direction"), via: o.getValue("via"), time0: o.getValue("time0"), time1: o.getValue("time1"));
-                
-                res.horaires.append(h);
-                
+                if(json.count > 0)
+                {
+                for obj in json
+                {
+                    let h: Horaire = Horaire(line: ELine.getELineFromNo(obj["name"] as! String), direction: obj["direction"] as! String, via: obj["via"] as! String, time0: obj["time0"] as! String, time1: obj["time1"] as! String);
+                    
+                    res.horaires.append(h);
+                }
+                }
             }
         }
         return res;
@@ -46,6 +49,23 @@ class NetReader
     func getTime(arret: String) -> Arret
     {
         var res: Arret = Arret(name: arret, horaires: []);
+        let url = NSURL(string: "http://envibus.kyrandia.org/tempsReel/?arret="+arret.stringByReplacingOccurrencesOfString(" ", withString: "%20"))!;
+        if let html = try? NSString(contentsOfURL: url, usedEncoding: nil)
+        {
+            if let json = try? NSJSONSerialization.JSONObjectWithData(html.dataUsingEncoding(NSUnicodeStringEncoding)!, options: .AllowFragments) as! NSArray
+            {
+                if(json.count > 0)
+                {
+                    for obj in json
+                    {
+                        let h: Horaire = Horaire(line: ELine.getELineFromNo(obj["name"] as! String), direction: obj["direction"] as! String, via: obj["via"] as!    String, time0: obj["time0"] as! String, time1: obj["time1"] as! String);
+                    
+                        res.horaires.append(h);
+                    }
+                }
+            }
+        }
+        /*
         let url = NSURL(string: "http://envibus.kyrandia.org/tempsReel/?arret="+arret.stringByReplacingOccurrencesOfString(" ", withString: "%20"))
         if let html = try? NSString(contentsOfURL: url!, usedEncoding: nil)
         {
@@ -60,7 +80,7 @@ class NetReader
                 
             }
         }
-        
+        */
         return res;
     }
     
