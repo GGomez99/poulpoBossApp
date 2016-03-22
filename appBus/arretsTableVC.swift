@@ -72,6 +72,7 @@ class arretsTableVC: UITableViewController, UISearchResultsUpdating {
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 print("set \(indexPath.row) à arretsTableVC.indexPath")
                 print(sections)
+                arretsTableVC.indexPath = 0
                 for indexPathSection in 0..<indexPath.section {
                     arretsTableVC.indexPath = arretsTableVC.indexPath + self.sections[indexPathSection].arrets.count
                     print("adding \(self.sections[indexPathSection].arrets.count) to arretsTableVC.indexPath")

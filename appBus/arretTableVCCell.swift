@@ -25,8 +25,6 @@ class arretTableVCCell: UITableViewCell {
     
     @IBOutlet weak var loadingIcon: UIActivityIndicatorView!
     
-    @IBOutlet weak var versLabel: UILabel!
-    
     @IBOutlet weak var viaPrefixeLabel: UILabel!
     
     

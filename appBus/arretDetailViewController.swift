@@ -24,6 +24,7 @@ class arretDetailViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("view loaded")
+        
         /* TRUC POUR REFRESH PAS FINI
         
         refreshButton.addTarget(self, action: "refresh:", forControlEvents: .TouchUpInside)
@@ -32,6 +33,7 @@ class arretDetailViewController: UITableViewController {
         
         timer = NSTimer.scheduledTimerWithTimeInterval(30.0, target: self, selector:"refreshEvery30Secs", userInfo: nil, repeats: true)
         */
+        
         //définie le style du title
         let navbarFont = UIFont(name: global.mainFont, size: 25) ?? UIFont.systemFontOfSize(25)
         navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: navbarFont, NSForegroundColorAttributeName: UIColor(hue: 0.905, saturation: 0.88, brightness: 0.78, alpha: 1)]
@@ -95,7 +97,6 @@ class arretDetailViewController: UITableViewController {
             cell.viaLabel.alpha = CGFloat(0)
             cell.passage1label.alpha = CGFloat(0)
             cell.lineNumber.alpha = CGFloat(0)
-            cell.versLabel.alpha = CGFloat(0)
             cell.viaPrefixeLabel.alpha = CGFloat(0)
         } else {
             
@@ -107,7 +108,6 @@ class arretDetailViewController: UITableViewController {
             cell.viaLabel.alpha = CGFloat(1)
             cell.passage1label.alpha = CGFloat(1)
             cell.lineNumber.alpha = CGFloat(1)
-            cell.versLabel.alpha = CGFloat(1)
             cell.viaPrefixeLabel.alpha = CGFloat(1)
             
             //Edit the line Number
@@ -123,9 +123,12 @@ class arretDetailViewController: UITableViewController {
             }
             
             //Edit the Via Label
-            cell.viaLabel.text = "\(horaireArret.horaires[indexPath.row].via)\n"
-            if cell.viaLabel == " " {
-                //cell.viaLabel == cell.passage1label.text! + cell.passage2label.text!
+
+            if horaireArret.horaires[indexPath.row].via == "nil" {
+                cell.viaLabel.removeFromSuperview()
+                cell.viaPrefixeLabel.removeFromSuperview()
+            } else {
+                cell.viaLabel.text = "\(horaireArret.horaires[indexPath.row].via)\n"
             }
             
             //Edit Direction Label
