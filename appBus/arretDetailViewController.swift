@@ -16,12 +16,22 @@ class arretDetailViewController: UITableViewController {
     var numberOfCells = 1
     var horaireArret: Arret = Arret(name: "",horaires:[])
     var horaireGet: Bool = false
+    var timer: NSTimer!
+    var refresher: UIRefreshControl!
     @IBOutlet var lineTableView: UITableView!
+    @IBOutlet weak var refreshButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("view loaded")
+        /* TRUC POUR REFRESH PAS FINI
         
+        refreshButton.addTarget(self, action: "refresh:", forControlEvents: .TouchUpInside)
+        refresher = UIRefreshControl()
+        refresher.addTarget(self, action: "refresh:", forControlEvents: .ValueChanged)
+        
+        timer = NSTimer.scheduledTimerWithTimeInterval(30.0, target: self, selector:"refreshEvery30Secs", userInfo: nil, repeats: true)
+        */
         //définie le style du title
         let navbarFont = UIFont(name: global.mainFont, size: 25) ?? UIFont.systemFontOfSize(25)
         navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: navbarFont, NSForegroundColorAttributeName: UIColor(hue: 0.905, saturation: 0.88, brightness: 0.78, alpha: 1)]
@@ -41,10 +51,10 @@ class arretDetailViewController: UITableViewController {
         //Request to Adrien
             self.horaireArret = IOAPI.getTime(self.listOfArret[arretsTableVC.indexPath])
             
+            print(self.horaireArret)
         //Set number of cells
             self.numberOfCells = self.horaireArret.horaires.count
 
-        
         //Refresh the TableView
             
             dispatch_async(dispatch_get_main_queue()) { [unowned self] in
@@ -52,6 +62,14 @@ class arretDetailViewController: UITableViewController {
                 self.lineTableView.reloadData()
                 print("refresh tableview")
             }
+        }
+        func refreshEvery15Secs(){
+            // refresh code
+        }
+        
+        func refresh(sender: AnyObject){
+            
+            refreshEvery15Secs() // calls whenever button is pressed
         }
     }
     
@@ -76,7 +94,6 @@ class arretDetailViewController: UITableViewController {
             cell.DirectionLabel.alpha = CGFloat(0)
             cell.viaLabel.alpha = CGFloat(0)
             cell.passage1label.alpha = CGFloat(0)
-            cell.passage2label.alpha = CGFloat(0)
             cell.lineNumber.alpha = CGFloat(0)
             cell.versLabel.alpha = CGFloat(0)
             cell.viaPrefixeLabel.alpha = CGFloat(0)
@@ -84,6 +101,14 @@ class arretDetailViewController: UITableViewController {
             
             //set invisible loading icon
             cell.loadingIcon.alpha = CGFloat(0)
+            
+            //set labels visible
+            cell.DirectionLabel.alpha = CGFloat(1)
+            cell.viaLabel.alpha = CGFloat(1)
+            cell.passage1label.alpha = CGFloat(1)
+            cell.lineNumber.alpha = CGFloat(1)
+            cell.versLabel.alpha = CGFloat(1)
+            cell.viaPrefixeLabel.alpha = CGFloat(1)
             
             //Edit the line Number
             cell.lineNumber.text = ELine.listOflineNo[horaireArret.horaires[indexPath.row].line]
@@ -96,7 +121,9 @@ class arretDetailViewController: UITableViewController {
             cell.passage2label.text = " puis " + horaireArret.horaires[indexPath.row].time1 + "min"
         
             if horaireArret.horaires[indexPath.row].time0 == horaireArret.horaires[indexPath.row].time1 {
-                cell.passage2label.text = " "
+                cell.passage1label.text = "Passage : " + horaireArret.horaires[indexPath.row].time0 + " min"
+            } else {
+                cell.passage1label.text = "Passage : " + horaireArret.horaires[indexPath.row].time0 + " min" + " puis " + horaireArret.horaires[indexPath.row].time1 + " min"
             }
             
             //Edit the Via Label
@@ -112,8 +139,7 @@ class arretDetailViewController: UITableViewController {
             cell.lineImage.image = UIImage(named: "line\(ELine.listOflineNo[horaireArret.horaires[indexPath.row].line]!)")
         }
         return cell
-    
-        }
+    }
     
     /*
     // Override to support conditional editing of the table view.

@@ -11,6 +11,10 @@ import CoreData
 
 class arretsTableVC: UITableViewController, UISearchResultsUpdating {
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+    }
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         
         filterContentForSearchText(searchController.searchBar.text!)
