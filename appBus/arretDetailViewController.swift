@@ -21,19 +21,41 @@ class arretDetailViewController: UITableViewController {
     @IBOutlet var lineTableView: UITableView!
     @IBOutlet weak var refreshButton: UIBarButtonItem!
     
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         print("view loaded")
         
-        /* TRUC POUR REFRESH PAS FINI
+       /* var timer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: "reloadAutomaticallyArret", userInfo: nil, repeats: true)
         
-        refreshButton.addTarget(self, action: "refresh:", forControlEvents: .TouchUpInside)
-        refresher = UIRefreshControl()
-        refresher.addTarget(self, action: "refresh:", forControlEvents: .ValueChanged)
-        
-        timer = NSTimer.scheduledTimerWithTimeInterval(30.0, target: self, selector:"refreshEvery30Secs", userInfo: nil, repeats: true)
-        */
-        
+        pour reload automatiquement la page
+        func reloadAutomaticallyArret() {
+            numberOfCells = 1
+            lineTableView.reloadData()
+            
+            dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0)) { [unowned self] in
+                
+                print(self.listOfArret)
+                print(self.listOfArret[arretsTableVC.indexPath])
+                
+                //Request to Adrien
+                self.horaireArret = IOAPI.getTime(self.listOfArret[arretsTableVC.indexPath])
+                
+                print(self.horaireArret)
+                //Set number of cells
+                self.numberOfCells = self.horaireArret.horaires.count
+                
+                //Refresh the TableView
+                
+                dispatch_async(dispatch_get_main_queue()) { [unowned self] in
+                    self.horaireGet = true
+                    self.lineTableView.reloadData()
+                    print("refreshed automatically")
+                }
+            }
+        }*/
+
         //définie le style du title
         let navbarFont = UIFont(name: global.mainFont, size: 25) ?? UIFont.systemFontOfSize(25)
         navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: navbarFont, NSForegroundColorAttributeName: UIColor(hue: 0.905, saturation: 0.88, brightness: 0.78, alpha: 1)]
@@ -65,16 +87,7 @@ class arretDetailViewController: UITableViewController {
                 print("refresh tableview")
             }
         }
-        func refreshEvery15Secs(){
-            // refresh code
-        }
-        
-        func refresh(sender: AnyObject){
-            
-            refreshEvery15Secs() // calls whenever button is pressed
-        }
     }
-    
         //Number of cells
    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
@@ -98,6 +111,8 @@ class arretDetailViewController: UITableViewController {
             cell.passage1label.alpha = CGFloat(0)
             cell.lineNumber.alpha = CGFloat(0)
             cell.viaPrefixeLabel.alpha = CGFloat(0)
+            cell.lineImage.alpha = CGFloat(0)
+            
         } else {
             
             //set invisible loading icon
@@ -109,6 +124,7 @@ class arretDetailViewController: UITableViewController {
             cell.passage1label.alpha = CGFloat(1)
             cell.lineNumber.alpha = CGFloat(1)
             cell.viaPrefixeLabel.alpha = CGFloat(1)
+            cell.lineImage.alpha = CGFloat(1)
             
             //Edit the line Number
             cell.lineNumber.text = ELine.listOflineNo[horaireArret.horaires[indexPath.row].line]
@@ -140,6 +156,37 @@ class arretDetailViewController: UITableViewController {
         return cell
     }
     
+    //pour reload la page
+    func reloadArret() {
+        horaireGet = false
+        numberOfCells = 1
+        lineTableView.reloadData()
+        
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0)) { [unowned self] in
+            
+            print(self.listOfArret)
+            print(self.listOfArret[arretsTableVC.indexPath])
+            
+            //Request to Adrien
+            self.horaireArret = IOAPI.getTime(self.listOfArret[arretsTableVC.indexPath])
+            
+            print(self.horaireArret)
+            //Set number of cells
+            self.numberOfCells = self.horaireArret.horaires.count
+            
+            //Refresh the TableView
+            
+            dispatch_async(dispatch_get_main_queue()) { [unowned self] in
+                self.horaireGet = true
+                self.lineTableView.reloadData()
+                print("refresh tableview")
+            }
+        }
+    }
+
+    @IBAction func ReloadArretButton(sender: AnyObject) {
+        reloadArret()
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -186,3 +233,4 @@ class arretDetailViewController: UITableViewController {
     */
 
 }
+//Reload when button is pressed
