@@ -89,7 +89,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="eUy-pB-nxv" kind="showDetail" identifier="showDetail" id="De7-cl-s6y"/>
+                                    <segue destination="dZx-7Z-tye" kind="showDetail" identifier="showDetail" action="showViewController:sender:" id="wEO-yT-goW"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -103,22 +103,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0F0-Fa-K31" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2307" y="391"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="5Pe-pl-WCz">
-            <objects>
-                <navigationController id="eUy-pB-nxv" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3QM-TN-g2c">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="dZx-7Z-tye" kind="relationship" relationship="rootViewController" id="B6c-jf-8am"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="KBp-6U-V2O" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3120" y="391"/>
         </scene>
         <!--Title-->
         <scene sceneID="Ter-bW-VRH">
@@ -154,12 +138,6 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q0d-HG-tF9">
-                                            <rect key="frame" x="8" y="8" width="85" height="83"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pf1-ED-6BM">
                                             <rect key="frame" x="143" y="30" width="200" height="14"/>
                                             <constraints>
@@ -179,6 +157,12 @@
                                             <rect key="frame" x="282" y="31" width="37" height="37"/>
                                             <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </activityIndicatorView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q0d-HG-tF9">
+                                            <rect key="frame" x="8" y="8" width="85" height="83"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="LxH-Fi-r4b" firstAttribute="leading" secondItem="ysl-j8-FnN" secondAttribute="trailing" constant="15" id="5tf-ZH-UgD"/>
@@ -222,19 +206,6 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Title" id="rZk-Ga-9s0">
                         <barButtonItem key="backBarButtonItem" title="Retour" id="E2U-qf-8xs"/>
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="tWm-rS-3eb">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xRg-dS-ouH">
-                                <rect key="frame" x="20" y="7" width="133" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="Retour">
-                                    <color key="titleColor" red="0.77647058820000003" green="0.090196078430000007" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <segue destination="WgH-ho-r34" kind="showDetail" id="P9x-a4-WYm"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="qS2-zr-Scq">
                             <connections>
                                 <action selector="ReloadArretButton:" destination="dZx-7Z-tye" id="mtf-FS-NPZ"/>
@@ -250,7 +221,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zip-MJ-gea" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3950" y="391"/>
+            <point key="canvasLocation" x="3196" y="391"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="GJK-Dj-xeF">
@@ -531,8 +502,8 @@
         <image name="menubuttonV2" width="41" height="41"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="P9x-a4-WYm"/>
-        <segue reference="ABm-QU-vIc"/>
+        <segue reference="cjN-FN-OXL"/>
         <segue reference="aOx-CY-29R"/>
+        <segue reference="ABm-QU-vIc"/>
     </inferredMetricsTieBreakers>
 </document>
