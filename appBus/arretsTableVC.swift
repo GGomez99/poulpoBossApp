@@ -2,8 +2,8 @@
 //  arretsTableVC.swift
 //  Interface First try
 //
-//  Created by Guyllian Gomez on 28/12/15.
-//  Copyright © 2015 Guyllian Gomez. All rights reserved.
+//  Created by Clément ROIG on 28/12/15.
+//  Copyright © 2015 Clément ROIG. All rights reserved.
 //
 
 import UIKit
